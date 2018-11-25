@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeFrameworkVersion>2.1.0</RuntimeFrameworkVersion>
+    <AssemblyName>NetCoreTemplate.Web</AssemblyName>
+    <RootNamespace>NetCoreTemplate.Web</RootNamespace>
+    <PackageId>NetCoreTemplate.Web</PackageId>
+    <Authors>Thymon Arens</Authors>
+    <Company>ThymonA</Company>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Product>NetCoreTemplate</Product>
+    <Description>GitHub: https://www.github.com/ThymonA/
+Website: https://www.thymonarens.nl/</Description>
+    <Copyright>2018 - Thymon Arens</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>ASP.NET Core 2.1</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="NLog.config" />
+    <Content Remove="NLog.production.config" />
+    <Content Remove="NLog.test.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_MainMenu.cshtml" />
+    <None Include="wwwroot\assets\js\theme.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastDeepCloner" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
+    <PackageReference Include="Microsoft.Graph" Version="1.12.0" />
+    <PackageReference Include="SimpleInjector" Version="4.4.0" />
+    <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.3.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="TimeZoneConverter" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreTemplate.Authentication\NetCoreTemplate.Authentication.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.DAL\NetCoreTemplate.DAL.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.FileManager\NetCoreTemplate.FileManager.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Providers\NetCoreTemplate.Providers.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Services\NetCoreTemplate.Services.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.SharedKernel\NetCoreTemplate.SharedKernel.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.ViewModelProcessors\NetCoreTemplate.ViewModelProcessors.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.ViewModels\NetCoreTemplate.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.production.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="appsettings.test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Device\Detail.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\sass\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>  
+  </ItemGroup>
+</Project>
+

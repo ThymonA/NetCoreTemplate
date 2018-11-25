@@ -1,0 +1,22 @@
+{
+  "name": "netcoretemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "./node_modules/.bin/webpack -w",
+    "gulp": "gulp -w"
+  },
+  "keywords": [
+    "bootstrap4"
+  ],
+  "author": "ThymonA",
+  "license": "",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-bower": "^0.0.14"
+  },
+  "dependencies": {
+    "natives": "^1.1.4"
+  }
+}

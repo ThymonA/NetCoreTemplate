@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>NetCoreTemplate.Services</AssemblyName>
+    <RootNamespace>NetCoreTemplate.Services</RootNamespace>
+    <PackageId>NetCoreTemplate.Services</PackageId>
+    <Authors>Thymon Arens</Authors>
+    <Company>ThymonA</Company>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Product>NetCoreTemplate</Product>
+    <Description>
+      GitHub: https://www.github.com/ThymonA/
+      Website: https://www.thymonarens.nl/
+    </Description>
+    <Copyright>2018 - Thymon Arens</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>ASP.NET Core 2.1</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TrackableEntities.EF.Core" Version="1.1.0" />
+    <ProjectReference Include="..\NetCoreTemplate.DAL\NetCoreTemplate.DAL.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Providers\NetCoreTemplate.Providers.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.SharedKernel\NetCoreTemplate.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

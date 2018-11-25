@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>NetCoreTemplate.ViewModelProcessors</AssemblyName>
+    <RootNamespace>NetCoreTemplate.ViewModelProcessors</RootNamespace>
+    <PackageId>NetCoreTemplate.ViewModelProcessors</PackageId>
+    <Authors>Thymon Arens</Authors>
+    <Company>ThymonA</Company>
+    <Product>NetCoreTemplate</Product>
+    <Description>GitHub: https://www.github.com/ThymonA/
+Website: https://www.thymonarens.nl/</Description>
+    <Copyright>2018 - Thymon Arens</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>ASP.NET Core 2.1</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+    <PackageReference Include="morelinq" Version="3.0.0" />
+    <PackageReference Include="TimeZoneConverter" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreTemplate.Authentication\NetCoreTemplate.Authentication.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.DAL\NetCoreTemplate.DAL.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.FileManager\NetCoreTemplate.FileManager.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Providers\NetCoreTemplate.Providers.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.Services\NetCoreTemplate.Services.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.SharedKernel\NetCoreTemplate.SharedKernel.csproj" />
+    <ProjectReference Include="..\NetCoreTemplate.ViewModels\NetCoreTemplate.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
