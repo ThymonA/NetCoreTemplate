@@ -6,6 +6,7 @@
     using NetCoreTemplate.DAL.Initializers.FileManager;
     using NetCoreTemplate.DAL.Initializers.General;
     using NetCoreTemplate.DAL.Initializers.Translation;
+    using NetCoreTemplate.DAL.Initializers.Translation.General;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
 
     public static class MainInitializer
@@ -41,6 +42,7 @@
         {
             var listTranslationInitializers = new List<BaseTranslationInitializer>
             {
+                new SignInTranslationInitializer(),
             };
 
             TranslationInitializer.SeedTranslations(context, listTranslationInitializers);

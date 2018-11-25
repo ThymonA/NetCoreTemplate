@@ -62,7 +62,7 @@
                     {
                         validationResult.AddError(
                             x => x.Username,
-                            "Uw account is gedeactiveerd, neem contact op met de systeem beheerder.");
+                            translationManager.GetTranslationLabel(LanguageId, "Dashboard:SignIn:Deactivated"));
 
                         ModelState.AddValidationResult(validationResult);
 
@@ -72,23 +72,18 @@
                     {
                         validationResult.AddError(
                             x => x.Username,
-                            "Uw gebruikersnaam of wachtwoord is verkeerd");
+                            translationManager.GetTranslationLabel(LanguageId, "Dashboard:SignIn:WrongLogin"));
 
                         validationResult.AddError(
                             x => x.Password,
-                            "Uw gebruikersnaam of wachtwoord is verkeerd");
+                            translationManager.GetTranslationLabel(LanguageId, "Dashboard:SignIn:WrongLogin"));
 
                         ModelState.AddValidationResult(validationResult);
 
                         throw;
                     }
                 },
-                () =>
-                {
-                    AddSuccessNotification(translationManager.GetTranslationLabel(LanguageId, "General", "Notification", "SignedIn"));
-
-                    return RedirectToAction("Index", "Dashboard");
-                },
+                () => RedirectToAction("Index", "Dashboard"),
                 () =>
                 {
                     var reloader = GetReloader<SignInViewModel>();
@@ -107,8 +102,6 @@
             {
                 Response.Cookies.Delete(cookie.Key);
             }
-
-            AddSuccessNotification(translationManager.GetTranslationLabel(LanguageId, "General", "Notification", "SignedOut"));
 
             return RedirectToAction("SignIn");
         }

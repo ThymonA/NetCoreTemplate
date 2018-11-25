@@ -70,7 +70,7 @@
 
         protected void LoadSystemUser()
         {
-            var systemUser = userProvider.GetUserByEmail("system@NetCoreTemplate.nl");
+            var systemUser = userProvider.GetUserByEmail("system");
 
             if (systemUser.IsNullOrDefault())
             {

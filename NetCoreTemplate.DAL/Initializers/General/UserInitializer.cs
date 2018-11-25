@@ -33,7 +33,7 @@
                 {
                     Id = 1,
                     Email = "contact@thymonarens.nl",
-                    Password = PBFDF2Hash.Hash("0Py6WVIPi5JZycVK"),
+                    Password = PBFDF2Hash.Hash("7EG3OGnB5VN3hZTT"),
                     Firstname = "Thymon",
                     Lastname = "Arens",
                     ResetToken = string.Empty,

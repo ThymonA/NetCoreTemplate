@@ -1,13 +1,10 @@
-﻿@using NetCoreTemplate.DAL.Permissions
-@using NetCoreTemplate.Web.Extensions
-@using Type = NetCoreTemplate.DAL.Permissions.Type
-@using Action = NetCoreTemplate.DAL.Permissions.Action
+﻿@using NetCoreTemplate.Web.Extensions
 @model NetCoreTemplate.ViewModels.Interfaces.IBaseAuthenticationViewModel
 <li class="nav-divider">
     Menu
 </li>
 <li class="nav-item ">
-    <a class="nav-link active" href="#">
+    <a class="nav-link @(Model.IsActive(Url.Action("Index", "Dashboard")) ? "active" : string.Empty)" href="@Url.Action("Index", "Dashboard")">
         <i class="fa fa-fw fa-user-circle"></i>Dashboard 
     </a>
 </li>

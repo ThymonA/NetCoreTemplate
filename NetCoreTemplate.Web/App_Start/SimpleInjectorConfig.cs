@@ -66,8 +66,9 @@
 
         private static void RegisterProviders(Container container)
         {
-            container.Register<IUserProvider, IUserProvider>();
-            container.Register<IPermissionProvider, PermissionProvider>();
+            container.Register<IUserProvider, UserProvider>(Lifestyle.Scoped);
+            container.Register<IPermissionProvider, PermissionProvider>(Lifestyle.Scoped);
+            container.Register<IRoleProvider, RoleProvider>(Lifestyle.Scoped);
         }
 
         private static void RegisterServices(Container container)

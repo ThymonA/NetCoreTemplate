@@ -94,6 +94,7 @@
             /** General */
             container.Register<IUserProvider, UserProvider>(Lifestyle.Scoped);
             container.Register<IPermissionProvider, PermissionProvider>(Lifestyle.Scoped);
+            container.Register<IRoleProvider, RoleProvider>(Lifestyle.Scoped);
         }
 
         private static void RegisterServices(Container container)

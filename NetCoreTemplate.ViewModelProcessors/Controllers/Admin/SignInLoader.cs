@@ -1,4 +1,4 @@
-﻿namespace NetCoreTemplate.ViewModelProcessors.Controllers.Admin.SignIn
+﻿namespace NetCoreTemplate.ViewModelProcessors.Controllers.Admin
 {
     using NetCoreTemplate.SharedKernel.ServiceContainer;
     using NetCoreTemplate.ViewModelProcessors.Base;
@@ -12,7 +12,7 @@
         {
         }
 
-        protected override TranslationSettings TranslationSettings => new TranslationSettings("Admin", "SignIn");
+        protected override TranslationSettings TranslationSettings => new TranslationSettings("Dashboard", "SignIn");
 
         protected override SignInViewModel CreateViewModel()
         {

@@ -1,4 +1,4 @@
-﻿namespace NetCoreTemplate.ViewModelProcessors.Controllers.Admin.SignIn
+﻿namespace NetCoreTemplate.ViewModelProcessors.Controllers.Admin
 {
     using NetCoreTemplate.SharedKernel.Interfaces.Managers;
     using NetCoreTemplate.SharedKernel.Validation;
