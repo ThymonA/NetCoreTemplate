@@ -1,6 +1,7 @@
 ﻿namespace NetCoreTemplate.ViewModelProcessors.Controllers.Admin
 {
     using NetCoreTemplate.SharedKernel.Interfaces.Managers;
+    using NetCoreTemplate.SharedKernel.ServiceContainer;
     using NetCoreTemplate.SharedKernel.Validation;
     using NetCoreTemplate.ViewModelProcessors.Base;
     using NetCoreTemplate.ViewModels.Controllers.Admin;
@@ -9,9 +10,10 @@
     {
         private readonly ITranslationManager translationManager;
 
-        public SignInValidator(ITranslationManager translationManager)
+        public SignInValidator(IServiceContainer serviceContainer)
+            : base(serviceContainer)
         {
-            this.translationManager = translationManager;
+            this.translationManager = serviceContainer.GetService<ITranslationManager>();
         }
 
         public override ValidationResult Validate(SignInViewModel viewModel)
