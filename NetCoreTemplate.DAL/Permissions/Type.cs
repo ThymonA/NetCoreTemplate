@@ -2,5 +2,7 @@
 {
     public enum Type
     {
+        Role = 1,
+        Roles = 2,
     }
 }
