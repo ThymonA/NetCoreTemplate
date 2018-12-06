@@ -69,6 +69,7 @@
             var viewModel = new RoleViewModel
             {
                 Id = role.Id,
+                Name = role.Name,
                 Active = role.Active,
                 Permissions = new List<PermissionViewModel>()
             };

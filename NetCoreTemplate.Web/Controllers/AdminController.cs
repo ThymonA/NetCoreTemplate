@@ -30,21 +30,7 @@
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public IActionResult SignIn()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Dashboard");
-            }
-
-            var loader = GetLoader<SignInViewModel>();
-
-            return View("SignIn", loader.Load());
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("signin")]
         public IActionResult SignIn(SignInViewModel viewModel)
         {
             var result = ProcessViewModel(
@@ -103,7 +89,7 @@
                 Response.Cookies.Delete(cookie.Key);
             }
 
-            return RedirectToAction("SignIn");
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

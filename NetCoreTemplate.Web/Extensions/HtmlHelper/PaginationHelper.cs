@@ -22,21 +22,21 @@
             var model = helper.ViewData.Model;
             var pagination = new StringBuilder();
 
-            pagination.AppendLine("<div class=\"dataTables_paginate paging_simple_numbers\" id=\"bs4-table_paginate\">");
+            pagination.AppendLine("<nav aria-label=\"navigation\">");
             pagination.AppendLine("<ul class=\"pagination\">");
 
             if (model.PageNumber > 1)
             {
                 var prevHref = PagingUrl((model.PageNumber - 1).ToString(), model.SearchTerm, optionals);
-                pagination.AppendLine("<li class=\"paginate_button page-item previous\" id=\"bs4-table_previous\">");
-                pagination.AppendLine($"<a href=\"{prevHref}\" aria-controls=\"bs4-table\" class=\"page-link\">Vorige</a>");
+                pagination.AppendLine("<li class=\"page-item\">");
+                pagination.AppendLine($"<a href=\"{prevHref}\" class=\"page-link\">{model.Label["General:Dashboard:Previous"]}</a>");
                 pagination.AppendLine("</li>");
             }
 
             if (model.PageNumber <= 1)
             {
-                pagination.AppendLine("<li class=\"paginate_button page-item previous disabled\" id=\"bs4-table_previous\">");
-                pagination.AppendLine($"<a href=\"#\" aria-controls=\"bs4-table\" class=\"page-link\">Vorige</a>");
+                pagination.AppendLine("<li class=\"page-item\">");
+                pagination.AppendLine($"<a href=\"#\" class=\"page-link\">{model.Label["General:Dashboard:Previous"]}</a>");
                 pagination.AppendLine("</li>");
             }
 
@@ -45,27 +45,27 @@
             foreach (var page in pages)
             {
                 var currentHref = PagingUrl(page.ToString(), model.SearchTerm, optionals);
-                pagination.AppendLine($"<li class=\"paginate_button page-item {(model.PageNumber == page ? "active" : string.Empty)}\">");
-                pagination.AppendLine($"<a class=\"page-link\" aria-controls=\"bs4-table\" href=\"{currentHref}\">{page}</a>");
+                pagination.AppendLine($"<li class=\"page-item {(model.PageNumber == page ? "active" : string.Empty)}\">");
+                pagination.AppendLine($"<a class=\"page-link\" href=\"{currentHref}\">{page}</a>");
                 pagination.AppendLine("</li>");
             }
 
             if (model.PageNumber < model.PageCount)
             {
                 var nextHref = PagingUrl((model.PageNumber + 1).ToString(), model.SearchTerm, optionals);
-                pagination.AppendLine("<li class=\"paginate_button page-item next\" id=\"bs4-table_previous\">");
-                pagination.AppendLine($"<a href=\"{nextHref}\" aria-controls=\"bs4-table\" class=\"page-link\">Volgende</a>");
+                pagination.AppendLine("<li class=\"page-item\">");
+                pagination.AppendLine($"<a href=\"{nextHref}\" class=\"page-link\">{model.Label["General:Dashboard:Next"]}</a>");
                 pagination.AppendLine("</li>");
             }
 
             if (model.PageNumber >= model.PageCount)
             {
-                pagination.AppendLine("<li class=\"paginate_button page-item next disabled\" id=\"bs4-table_next\">");
-                pagination.AppendLine($"<a href=\"#\" aria-controls=\"bs4-table\" class=\"page-link\">Volgende</a>");
+                pagination.AppendLine("<li class=\"page-item\">");
+                pagination.AppendLine($"<a href=\"#\" class=\"page-link\">{model.Label["General:Dashboard:Next"]}</a>");
                 pagination.AppendLine("</li>");
             }
 
-            pagination.AppendLine("</ul></div>");
+            pagination.AppendLine("</ul></nav>");
 
             return new HtmlString(pagination.ToString());
         }

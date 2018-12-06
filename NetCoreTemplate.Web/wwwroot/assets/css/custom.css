@@ -1,0 +1,58 @@
+﻿table th {
+    color: white !important;
+    background-color: #0e0d27;
+    border: 0 !important;
+    font-weight: 600 !important;
+}
+
+table th a {
+    color: white !important;
+    font-weight: 600;
+}
+
+table th a.active {
+    color: #ffc750 !important;
+    font-weight: 600;
+}
+
+table th a + .sort a i {
+    color: white !important;
+}
+
+table th a.active + .sort a i {
+    color: white !important;
+}
+
+table th a.active + .sort a.active i {
+    color: #ffc750 !important;
+    font-weight: 600 !important;
+}
+
+table th span.sort {
+    margin-left: 2.5px;
+}
+
+table th span.sort a {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}
+
+table tr:nth-of-type(odd),
+table tr.odd,
+table tr.odd td,
+table tr.odd th {
+    background-color: rgba(230, 230, 242, .5);
+}
+
+table tr:nth-of-type(even),
+table tr.even,
+table tr.even td,
+table tr.even th {
+    background-color: white;
+}
+
+.page-item.active .page-link,
+.page-link:hover {
+    background-color: #0e0d27;
+    border-color: #0e0d27;
+}

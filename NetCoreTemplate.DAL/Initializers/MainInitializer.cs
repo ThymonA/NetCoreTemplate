@@ -43,6 +43,9 @@
             var listTranslationInitializers = new List<BaseTranslationInitializer>
             {
                 new SignInTranslationInitializer(),
+                new MainMenuTranslationInitializer(),
+                new GeneralTranslationInitializer(),
+                new RoleTranslationInitializer()
             };
 
             TranslationInitializer.SeedTranslations(context, listTranslationInitializers);

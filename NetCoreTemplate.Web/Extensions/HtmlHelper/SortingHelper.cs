@@ -30,7 +30,7 @@
             var active = states.Item1;
             var orderByDesc = states.Item2;
 
-            return new HtmlString($"<a class=\"{(active ? "active" : "non-active")}\" style=\"text-decoration: none\" href=\"{SortingUrl(httpContext, name, InverseSortingDirection(model, httpContext, name), searchTerm, model.Path)}\">{columTitle}</a></span><span class=\"sort\"><a href=\"{SortingUrl(httpContext, name, false, searchTerm, model.Path)}\" class=\"sort-up {(!orderByDesc ? "active" : "non-active")}\"><i class=\"far fa-angle-up\"></i></a><a href=\"{SortingUrl(httpContext, name, true, searchTerm, model.Path)}\" class=\"sort-down {(orderByDesc ? "active" : "non-active")}\"><i class=\"far fa-angle-down\"></i></a>");
+            return new HtmlString($"<a class=\"{(active ? "active" : "non-active")}\" style=\"text-decoration: none\" href=\"{SortingUrl(httpContext, name, InverseSortingDirection(model, httpContext, name), searchTerm, model.Path)}\">{columTitle}</a></span><span class=\"sort\"><a href=\"{SortingUrl(httpContext, name, false, searchTerm, model.Path)}\" class=\"sort-up {(!orderByDesc ? "active" : "non-active")}\"><i class=\"fa fa-angle-up\"></i></a><a href=\"{SortingUrl(httpContext, name, true, searchTerm, model.Path)}\" class=\"sort-down {(orderByDesc ? "active" : "non-active")}\"><i class=\"fa fa-angle-down\"></i></a>");
         }
 
         public static IHtmlContent SortingHeader<TModel, TDbModel>(
@@ -50,7 +50,7 @@
             var active = states.Item1;
             var orderByDesc = states.Item2;
 
-            return new HtmlString($"<a class=\"{(active ? "active" : "non-active")}\" style=\"text-decoration: none\" href=\"{SortingUrl(httpContext, name, InverseSortingDirection(model, httpContext, name), searchTerm, model.Path)}\">{columTitle}</a></span><span class=\"sort\"><a href=\"{SortingUrl(httpContext, name, false, searchTerm, model.Path)}\" class=\"sort-up {(!orderByDesc ? "active" : "non-active")}\"><i class=\"far fa-angle-up\"></i></a><a href=\"{SortingUrl(httpContext, name, true, searchTerm, model.Path)}\" class=\"sort-down {(orderByDesc ? "active" : "non-active")}\"><i class=\"far fa-angle-down\"></i></a>");
+            return new HtmlString($"<a class=\"{(active ? "active" : "non-active")}\" style=\"text-decoration: none\" href=\"{SortingUrl(httpContext, name, InverseSortingDirection(model, httpContext, name), searchTerm, model.Path)}\">{columTitle}</a></span><span class=\"sort\"><a href=\"{SortingUrl(httpContext, name, false, searchTerm, model.Path)}\" class=\"sort-up {(!orderByDesc ? "active" : "non-active")}\"><i class=\"fa fa-angle-up\"></i></a><a href=\"{SortingUrl(httpContext, name, true, searchTerm, model.Path)}\" class=\"sort-down {(orderByDesc ? "active" : "non-active")}\"><i class=\"fa fa-angle-down\"></i></a>");
         }
 
         private static string SortingUrl(

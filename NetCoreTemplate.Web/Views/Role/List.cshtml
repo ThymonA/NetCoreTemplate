@@ -1,6 +1,37 @@
-﻿@model NetCoreTemplate.ViewModels.General.RoleListViewModel
+﻿@using NetCoreTemplate.Web.Extensions.HtmlHelper
+@model NetCoreTemplate.ViewModels.General.RoleListViewModel
 @{
     ViewData["Title"] = "Rollen";
 }
+@section styles
+{
+    <link rel="stylesheet" href="~/assets/vendor/DataTables/media/css/dataTables.bootstrap4.min.css">
+}
 
+<table class="table table-striped table-bordered dataTable" style="width:100%" role="grid">
+    <thead>
+        <tr role="row">
+            <th>@(Html.SortingHeader("Name", Model.Label["Dashboard:Role:Name"]))</th>
+            <th>@(Html.SortingHeader("Active", Model.Label["Dashboard:Role:Active"]))</th>
+            <th>@(Html.SortingHeader("Permissions", Model.Label["Dashboard:Role:Permissions"]))</th>
+            <th>@Model.Label["Dashboard:Role:Actions"]</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Data.Count; i++)
+        {
+            <tr role="row" class="@(i % 2 == 0 ? "even" : "odd")">
+                <td>@Model.Data[i].Name</td>
+                <td>
+                    <strong style="color: @(Model.Data[i].Active ? "green" : "red")">
+                        @(Model.Data[i].Active ? Model.Label["Dashboard:Role:Active"] : Model.Label["Dashboard:Role:NotActive"])
+                    </strong>
+                </td>
+                <td>@Model.Data[i].Permissions.Count</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
 
+@Html.Pagination()

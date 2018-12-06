@@ -94,7 +94,7 @@
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Admin}/{action=SignIn}/{id?}");
+                    template: "{controller=Dashboard}/{action=Index}/{id?}");
             });
         }
 
@@ -184,7 +184,7 @@
             })
             .AddCookie(options =>
             {
-                options.LoginPath = "/";
+                options.LoginPath = "/signin/";
                 options.LogoutPath = "/logout/";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
                 options.SessionStore = new MemoryCacheTicketStore();

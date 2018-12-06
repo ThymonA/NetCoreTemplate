@@ -12,6 +12,7 @@
     "material-design-iconic-font": "",
     "flag-icon-css": "",
     "jquery": "",
-    "jquery.slimscroll": "" 
+    "jquery.slimscroll": "",
+    "DataTables": ""
   }
 }

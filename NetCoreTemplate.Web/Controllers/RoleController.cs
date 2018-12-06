@@ -15,6 +15,7 @@
         {
         }
 
+        [HttpGet("roles")]
         [ClaimAuthorization(Module.Dashboard, Type.Roles, Action.View)]
         public IActionResult List()
         {
