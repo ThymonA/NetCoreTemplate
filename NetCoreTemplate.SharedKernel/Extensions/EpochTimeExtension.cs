@@ -1,4 +1,4 @@
-﻿namespace BPV_Portfolio.SharedKernel.Extensions
+﻿namespace NetCoreTemplate.SharedKernel.Extensions
 {
     using System;
 

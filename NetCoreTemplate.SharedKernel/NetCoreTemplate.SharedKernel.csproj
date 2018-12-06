@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>NetCoreTemplate.SharedKernel</AssemblyName>
-    <RootNamespace>BPV_Portfolio.SharedKernel</RootNamespace>
+    <RootNamespace>NetCoreTemplate.SharedKernel</RootNamespace>
     <PackageId>NetCoreTemplate.SharedKernel</PackageId>
     <Authors>Thymon Arens</Authors>
     <Company>ThymonA</Company>
