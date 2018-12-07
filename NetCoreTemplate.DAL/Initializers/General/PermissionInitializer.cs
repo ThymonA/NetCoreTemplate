@@ -55,7 +55,7 @@
                 new Permission
                 {
                     Id = 3,
-                    Action = Permissions.GetActionKey(Module.Dashboard, Type.Role, Action.Edit),
+                    Action = Permissions.GetActionKey(Module.Dashboard, Type.Role, Action.Delete),
                     Translation = new Translation
                     {
                         NL = "Gebruiker kan rollen verwijderen.",

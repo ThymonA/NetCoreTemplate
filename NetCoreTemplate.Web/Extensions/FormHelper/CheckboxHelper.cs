@@ -18,7 +18,7 @@
             bool disable = false)
             where TModel : IBaseViewModel
         {
-            return helper.CheckboxFor(expression, string.Empty, disable);
+            return CheckboxFor(helper, expression, string.Empty, disable);
         }
 
         public static IHtmlContent CheckboxFor<TModel>(
@@ -30,19 +30,20 @@
         {
             var stringBuilder = new StringBuilder();
             var id = helper.IdFor(expression);
+            var name = helper.NameFor(expression);
             var error = helper.ValidationMessageFor(expression).ToHtmlString();
             var hasError = error.Contains("field-validation-error");
+            var value = helper.ValueFor(expression);
+            var hasChecked = value.ToBoolean();
 
-            if (!string.IsNullOrWhiteSpace(label))
-            {
-                stringBuilder.AppendLine($"<label for=\"{id}\">{label}</label>");
-            }
-
+            stringBuilder.AppendLine("<label class=\"custom-control custom-checkbox\">");
+            //stringBuilder.AppendLine($"<input type=\"checkbox\" class=\"custom-control-input\" id=\"{id}\" name=\"{name}\"{(hasChecked ? " checked" : string.Empty)}>");
             stringBuilder.AppendLine((disable ?
-                  helper.CheckBoxFor(expression, new { @class = "tgl tgl-ios", disabled = "disabled" }) :
-                  helper.CheckBoxFor(expression, new { @class = "tgl tgl-ios" }))
+                  helper.CheckBoxFor(expression, new { @class = "custom-control-input", disabled = "disabled" }) :
+                  helper.CheckBoxFor(expression, new { @class = "custom-control-input" }))
                 .ToHtmlString());
-            stringBuilder.AppendLine($"<label for=\"{id}\" class=\"tgl-btn\"></label>");
+            stringBuilder.AppendLine($"<span class=\"custom-control-label\">{(!string.IsNullOrWhiteSpace(label) ? label : string.Empty)}</span>");
+            stringBuilder.AppendLine("</label>");
 
             if (hasError)
             {
@@ -58,7 +59,7 @@
             bool disable = false)
             where TModel : IBaseViewModel
         {
-            return helper.BoxedCheckboxFor(expression, string.Empty, disable);
+            return BoxedCheckboxFor(helper, expression, string.Empty, disable);
         }
 
         public static IHtmlContent BoxedCheckboxFor<TModel>(
@@ -69,28 +70,9 @@
             where TModel : IBaseViewModel
         {
             var stringBuilder = new StringBuilder();
-            var id = helper.IdFor(expression);
-            var error = helper.ValidationMessageFor(expression).ToHtmlString();
-            var hasError = error.Contains("field-validation-error");
 
             stringBuilder.AppendLine("<div class=\"form-group\">");
-
-            if (!string.IsNullOrWhiteSpace(label))
-            {
-                stringBuilder.AppendLine($"<label for=\"{id}\">{label}</label>");
-            }
-
-            stringBuilder.AppendLine((disable ?
-                helper.CheckBoxFor(expression, new { @class = "tgl tgl-ios", disabled = "disabled" }) :
-                helper.CheckBoxFor(expression, new { @class = "tgl tgl-ios" }))
-                .ToHtmlString());
-            stringBuilder.AppendLine($"<label for=\"{id}\" class=\"tgl-btn\"></label>");
-
-            if (hasError)
-            {
-                stringBuilder.AppendLine(error);
-            }
-
+            stringBuilder.AppendLine(CheckboxFor(helper, expression, label, disable).ToHtmlString());
             stringBuilder.AppendLine("</div>");
 
             return new HtmlString(stringBuilder.ToString());

@@ -52,6 +52,86 @@
                     DE = "Aktionen",
                     FR = "Actes"
                 },
+                new Translation
+                {
+                    Key = "Roles",
+                    NL = "Rollen",
+                    EN = "Roles",
+                    DE = "Rollen",
+                    FR = "Rôles"
+                },
+                new Translation
+                {
+                    Key = "Role",
+                    NL = "Rol",
+                    EN = "Role",
+                    DE = "Rolle",
+                    FR = "Rôle"
+                },
+                new Translation
+                {
+                    Key = "NewRole",
+                    NL = "Nieuwe rol",
+                    EN = "New role",
+                    DE = "Neue Rolle",
+                    FR = "Nouveau rôle"
+                },
+                new Translation
+                {
+                    Key = "Permission",
+                    NL = "Toestemming",
+                    EN = "Permission",
+                    DE = "Genehmigung",
+                    FR = "Autorisation"
+                },
+                new Translation
+                {
+                    Key = "RoleActive",
+                    NL = "Rol actief",
+                    EN = "Role active",
+                    DE = "Rolle aktiv",
+                    FR = "Rôle actif"
+                },
+                new Translation
+                {
+                    Key = "Add",
+                    NL = "Toevoegen",
+                    EN = "Add",
+                    DE = "Hinzufügen",
+                    FR = "Ajouter"
+                },
+                new Translation
+                {
+                    Key = "Edit",
+                    NL = "Bewerken",
+                    EN = "Edit",
+                    DE = "Bearbeiten",
+                    FR = "Modifier"
+                },
+                new Translation
+                {
+                    Key = "Delete",
+                    NL = "Verwijderen",
+                    EN = "Delete",
+                    DE = "Löschen",
+                    FR = "Effacer"
+                },
+                new Translation
+                {
+                    Key = "Cancel",
+                    NL = "Annuleren",
+                    EN = "Cancel",
+                    DE = "Stornieren",
+                    FR = "Annuler"
+                },
+                new Translation
+                {
+                    Key = "Save",
+                    NL = "Opslaan",
+                    EN = "Save",
+                    DE = "Sparen",
+                    FR = "Sauvegarder"
+                },
             };
         }
     }

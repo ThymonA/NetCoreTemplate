@@ -22,7 +22,7 @@
             var model = helper.ViewData.Model;
             var pagination = new StringBuilder();
 
-            pagination.AppendLine("<nav aria-label=\"navigation\">");
+            pagination.AppendLine("<nav aria-label=\"navigation text-xs-center\">");
             pagination.AppendLine("<ul class=\"pagination\">");
 
             if (model.PageNumber > 1)

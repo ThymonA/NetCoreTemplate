@@ -23,5 +23,28 @@
 
             return View("List", loader.Load());
         }
+
+        [HttpGet("role/{id?}")]
+        [ClaimAuthorization(Module.Dashboard, Type.Role, Action.Edit)]
+        public IActionResult Details(int? id)
+        {
+            var loader = GetLoader<RoleViewModel, int>();
+
+            return View("Details", loader.Load(id ?? default(int)));
+        }
+
+        [HttpPost("role/{id?}")]
+        [ClaimAuthorization(Module.Dashboard, Type.Role, Action.Edit)]
+        public IActionResult Details(RoleViewModel viewModel)
+        {
+            return ProcessViewModel(
+                viewModel,
+                x => RedirectToAction("List", "Role"),
+                x =>
+                {
+                    var reloader = GetReloader<RoleViewModel>();
+                    return View("Details", reloader.Reload(viewModel));
+                });
+        }
     }
 }

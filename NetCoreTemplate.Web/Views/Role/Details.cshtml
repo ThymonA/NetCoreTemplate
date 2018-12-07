@@ -1,0 +1,98 @@
+﻿@using NetCoreTemplate.DAL.Permissions
+@using NetCoreTemplate.Web.Extensions.FormHelper
+@using Type = NetCoreTemplate.DAL.Permissions.Type
+@using Action = NetCoreTemplate.DAL.Permissions.Action
+@model NetCoreTemplate.ViewModels.General.RoleViewModel
+@{
+    ViewData["Title"] = string.IsNullOrWhiteSpace(Model.Name) ? Model.Label["Dashboard:Role:NewRole"] : $"{Model.Label["Dashboard:Role:Role"]} {Model.Name}";
+}
+
+<div class="row">
+    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+            <h2 class="pageheader-title">@(string.IsNullOrWhiteSpace(Model.Name) ? Model.Label["Dashboard:Role:NewRole"] : $"{Model.Label["Dashboard:Role:Role"]} {Model.Name}")</h2>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index", "Dashboard")" class="breadcrumb-link">@Model.Label["Dashboard:MainMenu:Dashboard"]</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("List", "Role")" class="breadcrumb-link">@Model.Label["Dashboard:MainMenu:Roles"]</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            @if (Model.Id == default(int))
+                            {
+                                <a href="@Url.Action("Details", "Role")" class="breadcrumb-link active">@Model.Label["Dashboard:Role:NewRole"]</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details", "Role", new { id = Model.Id })" class="breadcrumb-link active">@Model.Label["Dashboard:Role:Role"] @(string.IsNullOrWhiteSpace(Model.Name) ? string.Empty : $" {Model.Name}")</a>
+                            }
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("Details", "Role", new { id = Model.Id == default(int) ? (int?)null : Model.Id }, FormMethod.Post))
+{
+    <div class="row">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.BoxedTextBoxFor(m => m.Name, Model.Label["Dashboard:Role:Name"])
+                    @Html.BoxedCheckboxFor(m => m.Active, Model.Label["Dashboard:Role:RoleActive"])
+                    @if (Model.HasPermission(Module.Dashboard, Type.Role, Action.Delete))
+                    {
+                        <a href="@Url.Action("List", "Role")" class="btn btn-danger action-button">@Model.Label["Dashboard:Role:Delete"]</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body zero-padding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" style="width: 100%" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th>@Model.Label["Dashboard:Role:Permission"]</th>
+                                    <th>@Model.Label["Dashboard:Role:Active"]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (var i = 0; i < Model.Permissions.Count; i++)
+                                {
+                                    <tr role="row" class="@(i % 2 == 0 ? "even" : "odd")">
+                                        <td>
+                                            @Html.HiddenFor(m => m.Permissions[i].Id)
+                                            @Model.Permissions[i].Action
+                                        </td>
+                                        <td>
+                                            @Html.BoxedCheckboxFor(m => m.Permissions[i].Active)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <button type="submit" class="btn btn-brand">@Model.Label["Dashboard:Role:Save"]</button>
+                    <a href="@Url.Action("List", "Role")" class="btn btn-light">@Model.Label["Dashboard:Role:Cancel"]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

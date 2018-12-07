@@ -13,7 +13,7 @@
     using NetCoreTemplate.ViewModels.General;
     using NetCoreTemplate.ViewModels.Models;
 
-    public sealed class RoleLoader : BaseLoader<RoleViewModel, int>
+    public sealed class RoleLoader : BaseAuthenticationLoader<RoleViewModel, int>
     {
         private readonly IRoleProvider roleProvider;
         private readonly IPermissionProvider permissionProvider;
@@ -42,6 +42,7 @@
                 {
                     Id = 0,
                     Name = string.Empty,
+                    Active = true,
                     Permissions = new List<PermissionViewModel>()
                 };
 
@@ -54,6 +55,7 @@
             {
                 Id = role.Id,
                 Name = role.Name,
+                Active = role.Active,
                 Permissions = new List<PermissionViewModel>()
             };
 
@@ -98,12 +100,12 @@
             }
 
             var existingPermissions = permissionProvider.GetAll().ToList();
-            var permissionViewModels = existingPermissions.Select(role =>
+            var permissionViewModels = existingPermissions.Select(permission =>
                 new PermissionViewModel
                 {
-                    Id = role.Id,
-                    Action = role.Action,
-                    Active = permissions.Any(y => y.Id == role.Id)
+                    Id = permission.Id,
+                    Action = permission.Action,
+                    Active = permissions.Any(y => y.Id == permission.Id)
                 });
 
             viewModel.Permissions = new List<PermissionViewModel>();

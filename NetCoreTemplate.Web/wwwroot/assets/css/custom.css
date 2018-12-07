@@ -1,4 +1,8 @@
-﻿table th {
+﻿body {
+    background-color: #efefef;
+}
+
+table th {
     color: white !important;
     background-color: #0e0d27;
     border: 0 !important;
@@ -55,4 +59,71 @@ table tr.even th {
 .page-link:hover {
     background-color: #0e0d27;
     border-color: #0e0d27;
+}
+
+.pagination {
+    display: -webkit-inline-box;
+}
+
+.sidebar-dark {
+    background-color: #0e0d27;
+}
+
+.sidebar-dark .nav-divider {
+    color: #ffc107;
+}
+
+.sidebar-dark.nav-left-sidebar .nav-link i,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link {
+    color: #ffc107;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:hover,
+.sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
+    background-color: #ffc107;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:hover,
+.sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active i,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus i,
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:hover i,
+.sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover i {
+    color: #0e0c28;
+}
+
+.nav-item {
+    margin-bottom: 5px;
+}
+
+.navbar-brand,
+.navbar-brand:hover {
+    color: #0e0c28;
+    font-size: 24px;
+}
+
+.bg-primary {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.zero-padding {
+    padding: 0 !important;
+}
+
+.table-button {
+    font-weight: 600;
+    width: 100%;
+}
+
+.action-button {
+    padding: .175rem .75rem;
+}
+
+.f-right {
+    float: right !important;
 }

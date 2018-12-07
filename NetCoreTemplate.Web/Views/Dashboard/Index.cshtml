@@ -1,16 +1,16 @@
 ﻿@model NetCoreTemplate.ViewModels.Controllers.Dashboard.HomeViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Model.Label["Dashboard:MainMenu:Dashboard"];
 }
 <div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
-            <h2 class="pageheader-title">Dashboard</h2>
+            <h2 class="pageheader-title">@Model.Label["Dashboard:MainMenu:Dashboard"]</h2>
             <div class="page-breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
-                            Dashboard
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index", "Dashboard")" class="breadcrumb-link">@Model.Label["Dashboard:MainMenu:Dashboard"]</a>
                         </li>
                     </ol>
                 </nav>
