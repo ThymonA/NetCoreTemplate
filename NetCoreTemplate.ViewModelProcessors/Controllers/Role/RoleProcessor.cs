@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Microsoft.AspNetCore.Http;
-
     using NetCoreTemplate.DAL.Models.General;
     using NetCoreTemplate.Providers.Interfaces;
     using NetCoreTemplate.Providers.Interfaces.General;
@@ -22,10 +20,8 @@
         private readonly IBaseService<Role> roleService;
         private readonly IBaseService<RolePermission> rolePermissionService;
 
-        public RoleProcessor(
-            IServiceContainer serviceContainer,
-            IHttpContextAccessor httpContextAccessor)
-            : base(httpContextAccessor)
+        public RoleProcessor(IServiceContainer serviceContainer)
+            : base(serviceContainer)
         {
             this.roleProvider = serviceContainer.GetService<IRoleProvider>();
             this.rolePermissionProvider = serviceContainer.GetService<IBaseProvider<RolePermission>>();

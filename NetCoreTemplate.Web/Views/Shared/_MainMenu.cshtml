@@ -15,7 +15,15 @@
 {
     <li class="nav-item ">
         <a class="nav-link @(Model.IsActive(Url.Action("List", "Role")) ? "active" : string.Empty)" href="@Url.Action("List", "Role")">
-            <i class="fa fa-fw fa-tasks"></i> @Model.Label["Dashboard:MainMenu:Roles"] 
+            <i class="fa fa-fw fa-tasks"></i> @Model.Label["Dashboard:MainMenu:Roles"]
+        </a>
+    </li>
+}
+@if (Model.HasPermission(Module.Dashboard, Type.Users, Action.View))
+{
+    <li class="nav-item ">
+        <a class="nav-link @(Model.IsActive(Url.Action("List", "User")) ? "active" : string.Empty)" href="@Url.Action("List", "User")">
+            <i class="fa fa-fw fa-users"></i> @Model.Label["Dashboard:MainMenu:Users"]
         </a>
     </li>
 }

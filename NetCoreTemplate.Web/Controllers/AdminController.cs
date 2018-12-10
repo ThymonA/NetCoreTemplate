@@ -30,6 +30,13 @@
         }
 
         [AllowAnonymous]
+        [HttpGet("signin")]
+        public IActionResult SignIn()
+        {
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        [AllowAnonymous]
         [HttpPost("signin")]
         public IActionResult SignIn(SignInViewModel viewModel)
         {

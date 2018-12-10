@@ -100,6 +100,7 @@
 
         private void IntegrateSimpleInjector(IServiceCollection services)
         {
+            container.Options.AllowOverridingRegistrations = true;
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

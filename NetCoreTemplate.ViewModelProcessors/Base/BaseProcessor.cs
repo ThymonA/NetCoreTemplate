@@ -9,14 +9,16 @@
 
     using Microsoft.AspNetCore.Http;
 
+    using NetCoreTemplate.SharedKernel.ServiceContainer;
+
     public abstract class BaseProcessor<TViewModel> : IProcessor<TViewModel>
         where TViewModel : class, IBaseViewModel
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        protected BaseProcessor(IHttpContextAccessor httpContextAccessor)
+        protected BaseProcessor(IServiceContainer serviceContainer)
         {
-            this.httpContextAccessor = httpContextAccessor;
+            this.httpContextAccessor = serviceContainer.GetService<IHttpContextAccessor>();
         }
 
         protected int UserId

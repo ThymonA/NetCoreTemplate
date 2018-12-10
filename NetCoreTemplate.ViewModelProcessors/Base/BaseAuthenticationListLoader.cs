@@ -22,14 +22,14 @@
         where TListViewModel : class, IBaseAuthenticationListViewModel<TEntityViewModel>
     {
         private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly ILoader<UserViewModel, int> userLoader;
+        private readonly ILoader<UserViewModel, string> userLoader;
         private readonly IPermissionProvider permissionProvider;
 
         protected BaseAuthenticationListLoader(IServiceContainer serviceContainer)
             : base(serviceContainer)
         {
             httpContextAccessor = serviceContainer.GetService<IHttpContextAccessor>();
-            userLoader = serviceContainer.GetService<ILoader<UserViewModel, int>>();
+            userLoader = serviceContainer.GetService<ILoader<UserViewModel, string>>();
             permissionProvider = serviceContainer.GetService<IPermissionProvider>();
         }
 
@@ -54,7 +54,7 @@
             var permissions = permissionProvider
                 .GetPermissions(userId);
 
-            CurrentUser = userLoader.Load(userId);
+            CurrentUser = userLoader.Load(userId.ToString());
             Actions = permissions.Select(x => x.Action).ToList();
         }
 

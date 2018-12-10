@@ -45,7 +45,8 @@
                 new SignInTranslationInitializer(),
                 new MainMenuTranslationInitializer(),
                 new GeneralTranslationInitializer(),
-                new RoleTranslationInitializer()
+                new RoleTranslationInitializer(),
+                new UserTranslationInitializer()
             };
 
             TranslationInitializer.SeedTranslations(context, listTranslationInitializers);

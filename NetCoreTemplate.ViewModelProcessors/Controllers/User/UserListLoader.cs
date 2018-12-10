@@ -8,6 +8,8 @@
     using Microsoft.EntityFrameworkCore;
 
     using NetCoreTemplate.DAL.Models.General;
+    using NetCoreTemplate.SharedKernel.Expressions;
+    using NetCoreTemplate.SharedKernel.Extensions;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
     using NetCoreTemplate.ViewModelProcessors.Base;
     using NetCoreTemplate.ViewModels.Controllers.User;
@@ -21,13 +23,34 @@
         {
         }
 
-        protected override Expression<Func<User, object>> DefaultOrderBy => user => $"Name";
+        protected override Dictionary<string, List<SortExpression<User>>> CustomOrderByExpressions
+            => new Dictionary<string, List<SortExpression<User>>>
+            {
+                {
+                    "Name",
+                    new List<SortExpression<User>>
+                    {
+                        new SortExpression<User>(x => x.Firstname + " " + x.Lastname)
+                    }
+                },
+                {
+                    "Active",
+                    new List<SortExpression<User>>
+                    {
+                        new SortExpression<User>(x => x.Active)
+                    }
+                }
+            };
+
+        protected override Expression<Func<User, object>> DefaultOrderBy => user => "Name";
 
         protected override TranslationSettings TranslationSettings => new TranslationSettings("Dashboard", "User");
 
         protected override IQueryable<User> BaseQuery => EntityProvider.GetAll()
             .Include(user => user.UserRoles)
-            .ThenInclude(userRole => userRole.Role);
+            .ThenInclude(userRole => userRole.Role)
+            .Where(x => x.Id != 2)
+        ;
 
         protected override UserListViewModel CreateViewModel()
         {
@@ -41,7 +64,6 @@
                 Id = user.Id,
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
-                Username = user.Email,
                 Email = user.Email,
                 Active = user.Active,
                 ResetToken = user.ResetToken,

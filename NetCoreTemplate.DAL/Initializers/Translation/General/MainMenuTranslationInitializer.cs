@@ -28,6 +28,14 @@
                     DE = "Rollen",
                     FR = "Rôles"
                 },
+                new Translation
+                {
+                    Key = "Users",
+                    NL = "Gebruikers",
+                    EN = "Users",
+                    DE = "Benutzer",
+                    FR = "Utilisateurs"
+                },
             };
         }
     }

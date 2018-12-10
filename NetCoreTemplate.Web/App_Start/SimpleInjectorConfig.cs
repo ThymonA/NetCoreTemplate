@@ -20,7 +20,9 @@
     using NetCoreTemplate.SharedKernel.Interfaces.Managers;
     using NetCoreTemplate.SharedKernel.Interfaces.PersistenceLayer;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
+    using NetCoreTemplate.ViewModelProcessors.Controllers.User;
     using NetCoreTemplate.ViewModelProcessors.Interfaces;
+    using NetCoreTemplate.ViewModels.General;
 
     using SimpleInjector;
 
@@ -36,6 +38,7 @@
             RegisterViewModelProcessors(container);
             RegisterProviders(container);
             RegisterServices(container);
+            OverrideViewModelProcessors(container);
         }
 
         private static void RegisterGeneralDependecies(Container container)
@@ -73,6 +76,11 @@
 
         private static void RegisterServices(Container container)
         {
+        }
+
+        private static void OverrideViewModelProcessors(Container container)
+        {
+            container.Register<IReloader<UserViewModel>, UserLoader>();
         }
     }
 }

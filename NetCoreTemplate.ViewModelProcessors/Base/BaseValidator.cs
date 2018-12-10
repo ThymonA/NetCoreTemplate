@@ -1,12 +1,15 @@
 ﻿namespace NetCoreTemplate.ViewModelProcessors.Base
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using Microsoft.AspNetCore.Http;
 
+    using NetCoreTemplate.Authentication;
     using NetCoreTemplate.DAL.Models.General;
     using NetCoreTemplate.Providers.Interfaces;
+    using NetCoreTemplate.Providers.Interfaces.General;
     using NetCoreTemplate.SharedKernel.Extensions;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
     using NetCoreTemplate.SharedKernel.Validation;
@@ -18,8 +21,13 @@
     {
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IBaseProvider<Language> languageProvider;
+        private readonly IPermissionProvider permissionProvider;
 
         protected int LanguageId { get; set; }
+
+        protected virtual bool LoadCurrentPermissions { get; set; } = false;
+
+        protected List<string> Actions { get; } = new List<string>();
 
         public abstract ValidationResult Validate(TViewModel viewModel);
 
@@ -27,8 +35,10 @@
         {
             httpContextAccessor = serviceContainer.GetService<IHttpContextAccessor>();
             languageProvider = serviceContainer.GetService<IBaseProvider<Language>>();
+            permissionProvider = serviceContainer.GetService<IPermissionProvider>();
 
             LoadLanguage();
+            LoadUser();
         }
 
         protected void LoadLanguage()
@@ -61,6 +71,30 @@
             catch (Exception)
             {
                 LanguageId = 1;
+            }
+        }
+
+        protected void LoadUser()
+        {
+            if (LoadCurrentPermissions)
+            {
+                var httpContext = httpContextAccessor.HttpContext;
+
+                if (httpContext.IsNullOrDefault() || !httpContext.User.Identity.IsAuthenticated)
+                {
+                    return;
+                }
+
+                var userId = httpContext.User.Claims
+                    .First(x => x.Type == Claims.UserId)
+                    .Value
+                    .ToInt();
+
+                var permissions = permissionProvider
+                    .GetPermissions(userId)
+                    .Select(x => x.Action);
+
+                Actions.AddRange(permissions);
             }
         }
     }

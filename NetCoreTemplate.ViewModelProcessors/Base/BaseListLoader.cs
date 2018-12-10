@@ -216,10 +216,15 @@
                 return list;
             }
 
+            var orderBy = OrderBy.Replace("??", string.Empty)
+                .Replace("(", string.Empty)
+                .Replace(")", string.Empty)
+                .RemoveMiltipleSpaces();
+
             var customExpressions = CustomOrderByExpressions;
-            if (customExpressions.ContainsKey(OrderBy))
+            if (customExpressions.ContainsKey(orderBy))
             {
-                var expressionsToUse = customExpressions[OrderBy];
+                var expressionsToUse = customExpressions[orderBy];
 
                 return OrderByDescending
                         ? list.OrderByDescending(expressionsToUse)

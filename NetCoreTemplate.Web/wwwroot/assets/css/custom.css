@@ -55,6 +55,10 @@ table tr.even th {
     background-color: white;
 }
 
+table tr:nth-of-type(odd), table tr.odd, table tr.odd td, table tr.odd th {
+    background-color: rgba(14, 13, 39, 0.025);
+}
+
 .page-item.active .page-link,
 .page-link:hover {
     background-color: #0e0d27;
@@ -126,4 +130,21 @@ table tr.even th {
 
 .f-right {
     float: right !important;
+}
+
+.field-validation-error {
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
+
+.header-dark,
+.nav-user-info {
+    background-color: #0e0d27;
+    color: white;
+}
+
+.header-dark a {
+    color: #ffffff;
+    color: rgba(255, 255 ,255, 0.5);
 }
