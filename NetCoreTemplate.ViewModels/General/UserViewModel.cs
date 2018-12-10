@@ -17,8 +17,6 @@
 
         public string Email { get; set; }
 
-        public string ApiKey { get; set; }
-
         public bool Active { get; set; }
 
         public string ResetToken { get; set; }
@@ -26,5 +24,7 @@
         public DateTime ResetTokenDate { get; set; }
 
         public List<string> RoleNames { get; } = new List<string>();
+
+        public List<RoleViewModel> Roles { get; set; }
     }
 }
