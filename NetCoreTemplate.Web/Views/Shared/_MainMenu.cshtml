@@ -1,4 +1,5 @@
-﻿@using NetCoreTemplate.DAL.Permissions
+﻿@using System.Net
+@using NetCoreTemplate.DAL.Permissions
 @using NetCoreTemplate.Web.Extensions
 @using Type = NetCoreTemplate.DAL.Permissions.Type
 @using Action = NetCoreTemplate.DAL.Permissions.Action
@@ -27,3 +28,62 @@
         </a>
     </li>
 }
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-12">
+            <span class="splash-description" style="text-align: left; font-weight: 600; color: #fff;">
+                @Model.Label["Dashboard:MainMenu:ChangeLanguage"]
+            </span>
+        </div>
+        <div class="col-md-12" style="margin-top: 5px;">
+            <div>
+                <a href="@Url.Action("Language", "Admin", new { languageCode = "nl", returnPath = WebUtility.UrlEncode(Model.Path) })">
+                    <span style="float: left; display: block;">
+                        <img src="~/assets/img/flags/nl.png" style="border-width: 0px; width: 25px;" />
+                    </span>
+                    <span style="display: contents; padding: 15px 0 0 0;">
+                        <span style="margin-left: 15px; color: white;">@Model.Label["Dashboard:MainMenu:Dutch"]</span>
+                    </span>
+                    <span class="clear-fix"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 5px;">
+            <div>
+                <a href="@Url.Action("Language", "Admin", new { languageCode = "en", returnPath = WebUtility.UrlEncode(Model.Path) })">
+                    <span style="float: left; display: block;">
+                        <img src="~/assets/img/flags/en.png" style="border-width: 0px; width: 25px;" />
+                    </span>
+                    <span style="display: contents; padding: 15px 0 0 0;">
+                        <span style="margin-left: 15px; color: white;">@Model.Label["Dashboard:MainMenu:English"]</span>
+                    </span>
+                    <span class="clear-fix"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 5px;">
+            <div>
+                <a href="@Url.Action("Language", "Admin", new { languageCode = "de", returnPath = WebUtility.UrlEncode(Model.Path) })">
+                    <span style="float: left; display: block;">
+                        <img src="~/assets/img/flags/de.png" style="border-width: 0px; width: 25px;" />
+                    </span>
+                    <span style="display: contents; padding: 15px 0 0 0;">
+                        <span style="margin-left: 15px; color: white;">@Model.Label["Dashboard:MainMenu:German"]</span>
+                    </span>
+                    <span class="clear-fix"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 5px;">
+            <div>
+                <a href="@Url.Action("Language", "Admin", new { languageCode = "fr", returnPath = WebUtility.UrlEncode(Model.Path) })">
+                    <span style="float: left; display: block;">
+                        <img src="~/assets/img/flags/fr.png" style="border-width: 0px; width: 25px;" />
+                    </span>
+                    <span style="display: contents; padding: 15px 0 0 0;">
+                        <span style="margin-left: 15px; color: white;">@Model.Label["Dashboard:MainMenu:French"]</span>
+                    </span>
+                    <span class="clear-fix"></span>
+                </a>
+            </div>
+        </div>
+    </div>

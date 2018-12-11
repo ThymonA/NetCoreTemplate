@@ -1,6 +1,7 @@
 ﻿namespace NetCoreTemplate.Web.Controllers
 {
     using System;
+    using System.Net;
     using System.Threading.Tasks;
 
     using NetCoreTemplate.Authentication;
@@ -17,16 +18,22 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using NetCoreTemplate.DAL.Models.General;
+    using NetCoreTemplate.Providers.Interfaces;
+    using NetCoreTemplate.SharedKernel.Extensions;
+
     public class AdminController : BaseController
     {
         private readonly IAuthenticationClient authentication;
         private readonly ITranslationManager translationManager;
+        private readonly IBaseProvider<Language> languageProvider;
 
         public AdminController(IServiceContainer serviceContainer)
             : base(serviceContainer)
         {
             this.authentication = serviceContainer.GetService<IAuthenticationClient>();
             this.translationManager = serviceContainer.GetService<ITranslationManager>();
+            this.languageProvider = serviceContainer.GetService<IBaseProvider<Language>>();
         }
 
         [AllowAnonymous]
@@ -97,6 +104,25 @@
             }
 
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        [AllowAnonymous]
+        [HttpGet("language/{languageCode}/{returnPath}")]
+        public IActionResult Language(string languageCode, string returnPath)
+        {
+            var language = languageProvider
+                .GetEntity(x => x.Code.Equals(languageCode, StringComparison.OrdinalIgnoreCase));
+
+            if (language.IsNullOrDefault())
+            {
+                language = new Language { Id = 1, Code = "NL" };
+            }
+
+            Response.Cookies.Append("language", language.Id.ToString());
+
+            var url = WebUtility.UrlDecode(returnPath);
+
+            return Redirect(url);
         }
     }
 }

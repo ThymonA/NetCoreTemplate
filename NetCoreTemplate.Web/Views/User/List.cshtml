@@ -67,7 +67,7 @@
                                             {
                                                 <a href="@Url.Action("Details", "User", new { id = Model.Data[i].Id })" class="btn btn-outline-dark action-button">
                                                     <i class="fa fa-fw fa-pencil-alt"></i>
-                                                    Bewerken
+                                                    @Model.Label["Dashboard:User:Edit"]
                                                 </a>
                                             }
                                         </td>
@@ -77,7 +77,7 @@
                             @for (var i = Model.Data.Count; i < Model.PageSize; i++)
                             {
                                 <tr role="row" class="@(i % 2 == 0 ? "even" : "odd")">
-                                    <td colspan="@(hasActions ? "4" : "3")" style="padding: 20px;"></td>
+                                    <td colspan="@(hasActions ? "4" : "3")" style="padding: 24px;"></td>
                                 </tr>
                             }
                             @if (Model.HasPermission(Module.Dashboard, Type.User, Action.Edit))

@@ -148,3 +148,14 @@ table tr:nth-of-type(odd), table tr.odd, table tr.odd td, table tr.odd th {
     color: #ffffff;
     color: rgba(255, 255 ,255, 0.5);
 }
+
+.clear-fix {
+    clear: both !important;
+    display: block !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
