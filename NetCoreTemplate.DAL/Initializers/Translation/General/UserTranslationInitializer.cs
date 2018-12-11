@@ -190,6 +190,14 @@
                 },
                 new Translation
                 {
+                    Key = "EmailNotValid",
+                    NL = "E-mail is niet geldig.",
+                    EN = "Email is not valid.",
+                    DE = "Email ist ungültig.",
+                    FR = "L'email n'est pas valide."
+                },
+                new Translation
+                {
                     Key = "UserNotFound",
                     NL = "Gebruiker bestaat niet.",
                     EN = "User does not exists.",

@@ -156,7 +156,7 @@
 
                 return successAction();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return failureAction();
             }
@@ -199,63 +199,10 @@
 
                 return successAction(viewModel);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return failureAction(viewModel);
             }
-        }
-
-        protected bool SessionContainsKey(string key) =>
-            HttpContext.Session.IsAvailable && HttpContext.Session.Keys.Contains(key);    
-
-        protected string DateTimeToString(DateTime dateTime)
-        {
-            return dateTime.ToString(CultureInfo().DateTimeFormat.ShortDatePattern) + " " +
-                   dateTime.ToString(CultureInfo().DateTimeFormat.ShortTimePattern);
-        }
-
-        protected void AddErrorNotification(string message)
-        {
-            AddNotification(message, "error");
-        }
-
-        protected void AddSuccessNotification(string message)
-        {
-            AddNotification(message, "success");
-        }
-
-        protected void AddWarningNotification(string message)
-        {
-            AddNotification(message, "warning");
-        }
-
-        protected void AddInformationNotification(string message)
-        {
-            AddNotification(message, "information");
-        }
-
-        private void AddNotification(string message, string type)
-        {
-            if (TempData.ContainsKey("notification"))
-            {
-                TempData.Remove("notification");
-            }
-
-            TempData.Add("notification", true);
-
-            if (TempData.ContainsKey("noty_message"))
-            {
-                TempData.Remove("noty_message");
-            }
-
-            TempData.Add("noty_message", message);
-
-            if (TempData.ContainsKey("noty_type"))
-            {
-                TempData.Remove("noty_type");
-            }
-
-            TempData.Add("noty_type", type);
         }
     }
 }

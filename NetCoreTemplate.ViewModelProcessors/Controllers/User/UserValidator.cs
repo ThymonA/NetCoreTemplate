@@ -9,6 +9,9 @@
     using NetCoreTemplate.ViewModelProcessors.Base;
     using NetCoreTemplate.ViewModels.General;
 
+    using Action = NetCoreTemplate.DAL.Permissions.Action;
+    using Type = NetCoreTemplate.DAL.Permissions.Type;
+
     public sealed class UserValidator : BaseValidator<UserViewModel>
     {
         private readonly IUserProvider userProvider;
@@ -74,12 +77,16 @@
                 {
                     validationResult.AddError(m => m.Email,
                         translationManager.GetTranslationLabel(LanguageId, "Dashboard:User:EmailEmpty"));
+                } else if (!ValidEmail(viewModel.Email))
+                {
+                    validationResult.AddError(m => m.Email,
+                        translationManager.GetTranslationLabel(LanguageId, "Dashboard:User:EmailNotValid"));
                 }
                 else
                 {
                     var existingUser = userProvider.GetUserByEmail(viewModel.Email);
 
-                    if (existingUser.Id != editedUser.Id)
+                    if (!existingUser.IsNullOrDefault() && existingUser.Id != editedUser.Id)
                     {
                         validationResult.AddError(m => m.Email,
                             translationManager.GetTranslationLabel(LanguageId, "Dashboard:User:EmailAlreadyExists"));
@@ -92,6 +99,20 @@
             }
 
             return validationResult;
+        }
+
+        private static bool ValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+
+                return !addr.IsNullOrDefault();
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

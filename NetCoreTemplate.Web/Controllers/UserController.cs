@@ -7,7 +7,6 @@
     using NetCoreTemplate.DAL.Permissions;
     using NetCoreTemplate.Providers.Interfaces.General;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
-    using NetCoreTemplate.ViewModelProcessors.Interfaces;
     using NetCoreTemplate.ViewModels.Controllers.User;
     using NetCoreTemplate.ViewModels.General;
     using NetCoreTemplate.Web.Controllers.Attributes;
@@ -15,13 +14,11 @@
 
     public class UserController : BaseController
     {
-        private readonly IServiceContainer serviceContainer;
         private readonly IPermissionProvider permissionProvider;
 
         public UserController(IServiceContainer serviceContainer)
             : base(serviceContainer)
         {
-            this.serviceContainer = serviceContainer;
             this.permissionProvider = serviceContainer.GetService<IPermissionProvider>();
         }
 
@@ -74,7 +71,7 @@
                 x => RedirectToAction("List", "User"),
                 x =>
                 {
-                    var reloader = serviceContainer.GetServices<IReloader<UserViewModel>>().Last();
+                    var reloader = GetLatestReloader<UserViewModel>();
                     return View("Details", reloader.Reload(viewModel));
                 });
         }

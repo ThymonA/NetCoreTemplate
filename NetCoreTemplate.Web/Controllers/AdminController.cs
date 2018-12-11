@@ -1,6 +1,7 @@
 ﻿namespace NetCoreTemplate.Web.Controllers
 {
     using System;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
 
@@ -98,7 +99,9 @@
         {
             await HttpContext.SignOutAsync();
 
-            foreach (var cookie in Request.Cookies)
+            foreach (var cookie in Request.Cookies
+                .Where(x => !x.Key.Equals("language",
+                    StringComparison.InvariantCultureIgnoreCase)))
             {
                 Response.Cookies.Delete(cookie.Key);
             }
