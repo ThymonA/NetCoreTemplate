@@ -156,7 +156,7 @@
 
                 return successAction();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return failureAction();
             }
@@ -199,7 +199,7 @@
 
                 return successAction(viewModel);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return failureAction(viewModel);
             }
