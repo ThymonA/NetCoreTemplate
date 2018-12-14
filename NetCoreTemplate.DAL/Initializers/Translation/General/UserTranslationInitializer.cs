@@ -204,6 +204,14 @@
                     DE = "Benutzer existiert nicht",
                     FR = "L'utilisateur n'existe pas."
                 },
+                new Translation
+                {
+                    Key = "NotDeleted",
+                    NL = "Gebruiker is niet verwijderd vanwege een onbekende fout.",
+                    EN = "User has not been deleted because an unknown error.",
+                    DE = "Benutzer wurde wegen eines unbekannten Fehlers nicht gelöscht.",
+                    FR = "L'utilisateur n'a pas été supprimé en raison d'une erreur inconnue."
+                }
             };
         }
     }

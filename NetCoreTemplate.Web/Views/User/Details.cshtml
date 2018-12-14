@@ -47,9 +47,9 @@
                     @Html.BoxedTextBoxFor(m => m.Lastname, Model.Label["Dashboard:User:Lastname"])
                     @Html.BoxedTextBoxFor(m => m.Email, Model.Label["Dashboard:User:Email"], !Model.HasPermission(Module.Dashboard, Type.User, Action.Edit))
                     @Html.BoxedCheckboxFor(m => m.Active, Model.Label["Dashboard:User:UserActive"])
-                    @if (Model.HasPermission(Module.Dashboard, Type.User, Action.Delete))
+                    @if (Model.HasPermission(Module.Dashboard, Type.User, Action.Delete) && Model.Id != Model.User.Id && Model.Id != default(int))
                     {
-                        <a href="@Url.Action("List", "User")" class="btn btn-danger action-button">@Model.Label["Dashboard:User:Delete"]</a>
+                        <a href="@Url.Action("Delete", "User", new { id = Model.Id })" class="btn btn-danger action-button">@Model.Label["Dashboard:User:Delete"]</a>
                     }
                 </div>
             </div>

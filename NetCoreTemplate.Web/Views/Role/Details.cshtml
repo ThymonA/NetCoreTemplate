@@ -47,7 +47,7 @@
                     @Html.BoxedCheckboxFor(m => m.Active, Model.Label["Dashboard:Role:RoleActive"])
                     @if (Model.HasPermission(Module.Dashboard, Type.Role, Action.Delete))
                     {
-                        <a href="@Url.Action("List", "Role")" class="btn btn-danger action-button">@Model.Label["Dashboard:Role:Delete"]</a>
+                        <a href="@Url.Action("Delete", "Role", new { id = Model.Id })" class="btn btn-danger action-button">@Model.Label["Dashboard:Role:Delete"]</a>
                     }
                 </div>
             </div>

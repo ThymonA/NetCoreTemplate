@@ -132,6 +132,14 @@
                     DE = "Sparen",
                     FR = "Sauvegarder"
                 },
+                new Translation
+                {
+                    Key = "NotDeleted",
+                    NL = "Rol is niet verwijderd vanwege een onbekende fout.",
+                    EN = "Role has not been deleted because an unknown error.",
+                    DE = "Rolle wurde wegen eines unbekannten Fehlers nicht gelöscht.",
+                    FR = "Le rôle n'a pas été supprimé car une erreur inconnue."
+                }
             };
         }
     }
