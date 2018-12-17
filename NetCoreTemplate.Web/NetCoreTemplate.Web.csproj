@@ -38,6 +38,7 @@ Website: https://www.thymonarens.nl/</Description>
     <PackageReference Include="FastDeepCloner" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
     <PackageReference Include="Microsoft.Graph" Version="1.12.0" />
+    <PackageReference Include="RazorLight" Version="2.0.0-beta1" />
     <PackageReference Include="SimpleInjector" Version="4.4.0" />
     <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.3.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
@@ -67,6 +68,12 @@ Website: https://www.thymonarens.nl/</Description>
     </Content>
     <Content Update="appsettings.test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Admin\ResetExpire.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Admin\ResetToken.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Admin\ResetSuccess.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>

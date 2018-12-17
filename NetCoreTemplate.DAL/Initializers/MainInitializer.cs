@@ -46,7 +46,8 @@
                 new MainMenuTranslationInitializer(),
                 new GeneralTranslationInitializer(),
                 new RoleTranslationInitializer(),
-                new UserTranslationInitializer()
+                new UserTranslationInitializer(),
+                new AdminTranslationInitializer()
             };
 
             TranslationInitializer.SeedTranslations(context, listTranslationInitializers);

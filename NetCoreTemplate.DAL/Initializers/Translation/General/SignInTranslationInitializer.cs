@@ -60,6 +60,22 @@
                     DE = "Melden Sie sich mit Ihrem Konto an.",
                     FR = "Connectez-vous avec votre compte."
                 },
+                new Translation
+                {
+                    Key = "ForgotPassword",
+                    NL = "Uw wachtwoord vergeten?",
+                    EN = "Forgot your password?",
+                    DE = "Haben Sie Ihr Passwort vergessen?",
+                    FR = "Mot de passe oublié?"
+                },
+                new Translation
+                {
+                    Key = "ClickToReset",
+                    NL = "Klik hier om te resetten",
+                    EN = "Click here to reset",
+                    DE = "Klicken Sie hier zum Zurücksetzen",
+                    FR = "Cliquez ici pour réinitialiser"
+                },
             };
         }
     }

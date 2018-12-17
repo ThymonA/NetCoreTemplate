@@ -25,5 +25,10 @@
             return Persistence.Get<User>().FirstOrDefault(user =>
                 user.Email.Equals(email, StringComparison.InvariantCultureIgnoreCase));
         }
+
+        public User GetUserByToken(string token)
+        {
+            return Persistence.Get<User>().FirstOrDefault(user => user.ResetToken.Equals(token));
+        }
     }
 }

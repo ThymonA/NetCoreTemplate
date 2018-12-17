@@ -1,5 +1,5 @@
 ﻿@using NetCoreTemplate.Web.Extensions.FormHelper
-@model NetCoreTemplate.ViewModels.Controllers.Admin.PasswordResetViewModel
+@model NetCoreTemplate.ViewModels.Controllers.Admin.ResetPasswordViewModel
 @{
     Layout = null;
 }
@@ -28,7 +28,7 @@
             padding-bottom: 40px;
         }
     </style>
-    <title>@Model.Label["Dashboard:Admin:SuccessTitle"] - NetCoreTemplate</title>
+    <title>@Model.Label["Dashboard:Admin:TokenTitle"] - NetCoreTemplate</title>
 </head>
 <body>
     <div class="splash-container">
@@ -41,14 +41,29 @@
                     AspNetCoreTemplate
                 </a>
                 <span class="splash-description">
-                    @Model.Label["Dashboard:Admin:SuccessTitle"]
+                    @Model.Label["Dashboard:Admin:TokenTitle"]
                 </span>
             </div>
             <div class="card-body">
                 <p class="splash-description">
-                    @Model.Label["Dashboard:Admin:SuccessMessage"]
+                    @Model.Label["Dashboard:Admin:TokenMessage"]<br />
+                    <strong>@Model.Email</strong>
                 </p>
-                <a href="@Url.Action("Index", "Dashboard")" class="btn btn-brand btn-lg btn-block">@Model.Label["Dashboard:Admin:Back"]</a>
+                @using (Html.BeginForm("ResetToken", "Admin", FormMethod.Post, new { token = Model.Token }))
+                {
+                    @Html.HiddenFor(m => m.Token)
+                    @Html.BoxedTextBoxFor(m => m.Password, Model.Label["Dashboard:Admin:Password"], textboxType: "password")
+                    @Html.BoxedTextBoxFor(m => m.PasswordCheck, Model.Label["Dashboard:Admin:RepeatPassword"], textboxType: "password")
+                    <ul>
+                        <li>@Model.Label["Dashboard:Admin:PasswordCapitalLetters"]</li>
+                        <li>@Model.Label["Dashboard:Admin:PasswordLowercase"]</li>
+                        <li>@Model.Label["Dashboard:Admin:PasswordNumbers"]</li>
+                        <li>@Model.Label["Dashboard:Admin:PasswordCharacters"]</li>
+                        <li>@Model.Label["Dashboard:Admin:PasswordAtLeastLong"]</li>
+                    </ul>
+                    @Html.ButtonFor(Model.Label["Dashboard:Admin:SetPassword"])
+                    <a href="@Url.Action("Index", "Dashboard")" class="btn btn-light btn-lg btn-block">@Model.Label["Dashboard:Admin:Cancel"]</a>
+                }
             </div>
         </div>
     </div>

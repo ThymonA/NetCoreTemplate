@@ -21,6 +21,7 @@
 
     using NetCoreTemplate.DAL.Models.General;
     using NetCoreTemplate.Providers.Interfaces;
+    using NetCoreTemplate.Providers.Interfaces.General;
     using NetCoreTemplate.SharedKernel.Extensions;
 
     public class AdminController : BaseController
@@ -28,6 +29,7 @@
         private readonly IAuthenticationClient authentication;
         private readonly ITranslationManager translationManager;
         private readonly IBaseProvider<Language> languageProvider;
+        private readonly IUserProvider userProvider;
 
         public AdminController(IServiceContainer serviceContainer)
             : base(serviceContainer)
@@ -35,6 +37,7 @@
             this.authentication = serviceContainer.GetService<IAuthenticationClient>();
             this.translationManager = serviceContainer.GetService<ITranslationManager>();
             this.languageProvider = serviceContainer.GetService<IBaseProvider<Language>>();
+            this.userProvider = serviceContainer.GetService<IUserProvider>();
         }
 
         [AllowAnonymous]
@@ -110,7 +113,7 @@
         }
 
         [AllowAnonymous]
-        [HttpGet("reset/request")]
+        [HttpGet("reset")]
         public IActionResult PasswordReset()
         {
             var loader = GetLoader<PasswordResetViewModel>();
@@ -119,12 +122,12 @@
         }
 
         [AllowAnonymous]
-        [HttpPost("reset/request")]
+        [HttpPost("reset")]
         public IActionResult PasswordReset(PasswordResetViewModel viewModel)
         {
             return ProcessViewModel(
                 viewModel,
-                x => RedirectToRoute("ResetSuccess", "Admin"),
+                x => RedirectToAction("ResetSuccess", "Admin"),
                 x =>
                 {
                     var reloader = GetReloader<PasswordResetViewModel>();
@@ -134,12 +137,61 @@
         }
 
         [AllowAnonymous]
-        [HttpGet("reset/success")]
+        [HttpGet("success")]
         public IActionResult ResetSuccess()
         {
             var loader = GetLoader<PasswordResetViewModel>();
 
             return View("ResetSuccess", loader.Load());
+        }
+
+        [AllowAnonymous]
+        [HttpGet("expire")]
+        public IActionResult ResetExpire()
+        {
+            var loader = GetLoader<PasswordResetViewModel>();
+
+            return View("ResetExpire", loader.Load());
+        }
+
+        [AllowAnonymous]
+        [HttpGet("token/")]
+        public IActionResult ResetToken()
+        {
+            return RedirectToAction("ResetExpire", "Admin");
+        }
+
+        [AllowAnonymous]
+        [HttpGet("token/{token}")]
+        public IActionResult ResetToken(string token)
+        {
+            var user = userProvider.GetUserByToken(token);
+
+            if (user.IsNullOrDefault() ||
+                !user.ResetTokenDate.HasValue ||
+                user.ResetTokenDate.Value.AddHours(12) < DateTime.Now)
+            {
+                return RedirectToAction("ResetExpire", "Admin");
+            }
+
+            var loader = GetLoader<ResetPasswordViewModel, string>();
+
+            return View("ResetToken", loader.Load(token));
+        }
+
+        [AllowAnonymous]
+        [HttpPost("token/{token}")]
+        public IActionResult ResetToken(ResetPasswordViewModel viewModel)
+        {
+            return ProcessViewModel(
+                viewModel,
+                x => RedirectToAction("Index", "Dashboard"),
+                x =>
+                {
+                    var reloader = GetReloader<ResetPasswordViewModel>();
+
+                    return View("ResetToken", reloader.Reload(viewModel));
+                });
         }
 
         [AllowAnonymous]

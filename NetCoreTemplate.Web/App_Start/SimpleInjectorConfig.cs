@@ -1,10 +1,13 @@
 ﻿namespace NetCoreTemplate.Web
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Reflection;
 
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+    using Microsoft.DotNet.PlatformAbstractions;
 
     using NetCoreTemplate.Authentication;
     using NetCoreTemplate.Authentication.Client;
@@ -26,6 +29,8 @@
     using NetCoreTemplate.ViewModelProcessors.Interfaces;
     using NetCoreTemplate.ViewModels.General;
 
+    using RazorLight;
+
     using SimpleInjector;
 
     public static class SimpleInjectorConfig
@@ -41,6 +46,7 @@
             RegisterProviders(container);
             RegisterServices(container);
             OverrideViewModelProcessors(container);
+            RegisterViewEngine(container);
         }
 
         private static void RegisterGeneralDependecies(Container container)
@@ -85,6 +91,21 @@
         private static void OverrideViewModelProcessors(Container container)
         {
             container.Register<IReloader<UserViewModel>, UserLoader>();
+        }
+
+        private static void RegisterViewEngine(Container container)
+        {
+            var basePath = ApplicationEnvironment.ApplicationBasePath;
+            var directorySeparator = Path.DirectorySeparatorChar;
+            var index = basePath.IndexOf("bin", StringComparison.Ordinal);
+            basePath = basePath.Substring(0, index <= 0 ? basePath.Length : index) + $"Views{directorySeparator}";
+
+            var engine = new RazorLightEngineBuilder()
+                .UseFilesystemProject(basePath)
+                .UseMemoryCachingProvider()
+                .Build();
+
+            container.RegisterSingleton<IRazorLightEngine>(() => engine);
         }
     }
 }

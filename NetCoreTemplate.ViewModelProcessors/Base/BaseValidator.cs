@@ -33,9 +33,9 @@
 
         protected BaseValidator(IServiceContainer serviceContainer)
         {
-            httpContextAccessor = serviceContainer.GetService<IHttpContextAccessor>();
-            languageProvider = serviceContainer.GetService<IBaseProvider<Language>>();
-            permissionProvider = serviceContainer.GetService<IPermissionProvider>();
+            this.httpContextAccessor = serviceContainer.GetService<IHttpContextAccessor>();
+            this.languageProvider = serviceContainer.GetService<IBaseProvider<Language>>();
+            this.permissionProvider = serviceContainer.GetService<IPermissionProvider>();
 
             LoadLanguage();
             LoadUser();

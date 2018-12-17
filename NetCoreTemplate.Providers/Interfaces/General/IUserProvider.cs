@@ -7,5 +7,7 @@
         User GetUserById(int userId);
 
         User GetUserByEmail(string email);
+
+        User GetUserByToken(string token);
     }
 }

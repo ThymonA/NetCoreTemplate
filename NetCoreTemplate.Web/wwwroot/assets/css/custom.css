@@ -159,3 +159,26 @@ table tr:nth-of-type(odd), table tr.odd, table tr.odd td, table tr.odd th {
     margin: 0 !important;
     list-style: none !important;
 }
+
+a.back-button {
+    float: left !important;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+a.back-button:hover i {
+    color: #0e0d27;
+    background-color: white;
+    border-color: white;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+a.back-button i {
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}

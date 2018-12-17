@@ -51,7 +51,10 @@
                 }
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12">
-                        <p><a href="@Url.Action("PasswordReset", "Admin")">Wachtwoord resetten?</a></p>
+                        <p>
+                            <strong>@Model.Label["Dashboard:SignIn:ForgotPassword"]</strong><br />
+                            <a href="@Url.Action("PasswordReset", "Admin")">@Model.Label["Dashboard:SignIn:ClickToReset"]</a>
+                        </p>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 15px;">

@@ -12,7 +12,7 @@
         {
         }
 
-        protected override TranslationSettings TranslationSettings => new TranslationSettings("Dashboard", "SignIn");
+        protected override TranslationSettings TranslationSettings => new TranslationSettings("Dashboard", "Admin");
 
         protected override PasswordResetViewModel CreateViewModel()
         {
