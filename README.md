@@ -33,18 +33,15 @@ Template is available in 4 different languages ( **NL**, **EN**, **DE**, **FR** 
 ![N|Solid](https://i.imgur.com/LEIDvol.png)
 
 #### 2.2 Reset Password
-![N|Solid](https://i.imgur.com/LEIDvol.png)
-
-##### 2.2.2 Request For New Password
 ![N|Solid](https://i.imgur.com/3AeJKHU.png)
 
-##### 2.2.3 Success Message After Password Request 
+##### 2.2.2 Success Message After Password Request 
 ![N|Solid](https://i.imgur.com/sjqDZlh.png)
 
-##### 2.2.4 Password Reset Mail 
+##### 2.2.3 Password Reset Mail 
 ![N|Solid](https://i.imgur.com/ZUl4xbP.png)
 
-##### 2.2.5 Password Reset Form 
+##### 2.2.4 Password Reset Form 
 ![N|Solid](https://i.imgur.com/QmXN9xs.png)
 
 #### 2.3 Dashboard
