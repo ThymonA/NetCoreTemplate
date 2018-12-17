@@ -49,7 +49,11 @@
                     @Html.BoxedTextBoxFor(m => m.Password, Model.Label["Dashboard:SignIn:Password"], textboxType: "password")
                     @Html.ButtonFor(Model.Label["Dashboard:SignIn:SignIn"])
                 }
-                
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-12">
+                        <p><a href="@Url.Action("PasswordReset", "Admin")">Wachtwoord resetten?</a></p>
+                    </div>
+                </div>
                 <div class="row" style="margin-top: 15px;">
                     <div class="col-md-12">
                         <span class="splash-description" style="text-align: left; font-weight: 600;">

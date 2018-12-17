@@ -47,18 +47,18 @@
                 new Translation
                 {
                     Key = "PasswordReset",
-                    NL = "Wachtwoord herstellen",
-                    EN = "Recover password",
-                    DE = "Passwort wiederherstellen",
-                    FR = "Récupérer mot de passe"
+                    NL = "Wachtwoord opnieuw instellen",
+                    EN = "Reset password",
+                    DE = "Passwort zurücksetzen",
+                    FR = "Réinitialiser le mot de passe"
                 },
                 new Translation
                 {
                     Key = "Message",
-                    NL = "Vul uw e-mailadres in om uw wachtwoord te resetten.",
-                    EN = "Enter your email address to reset your password.",
-                    DE = "Geben Sie Ihre E-Mail-Addresse ein, um Ihr Passwort zurückzusetzen",
-                    FR = "Saisissez votre adresse email pour réinitialisez votre mot de passe"
+                    NL = "Stel uw wachtwoord opnieuw in door uw e-mailadres in te voeren.",
+                    EN = "Reset your password by enter your email address.",
+                    DE = "Setzen Sie Ihr Passwort zurück, indem Sie Ihre E-Mail-Adresse eingeben.",
+                    FR = "Réinitialiser votre mot de passe en entrant votre adresse email."
                 }
             };
         }
