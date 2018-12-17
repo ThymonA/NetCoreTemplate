@@ -110,6 +110,39 @@
         }
 
         [AllowAnonymous]
+        [HttpGet("reset/request")]
+        public IActionResult PasswordReset()
+        {
+            var loader = GetLoader<PasswordResetViewModel>();
+
+            return View("PasswordReset", loader.Load());
+        }
+
+        [AllowAnonymous]
+        [HttpPost("reset/request")]
+        public IActionResult PasswordReset(PasswordResetViewModel viewModel)
+        {
+            return ProcessViewModel(
+                viewModel,
+                x => RedirectToRoute("ResetSuccess", "Admin"),
+                x =>
+                {
+                    var reloader = GetReloader<PasswordResetViewModel>();
+
+                    return View("PasswordReset", reloader.Reload(viewModel));
+                });
+        }
+
+        [AllowAnonymous]
+        [HttpGet("reset/success")]
+        public IActionResult ResetSuccess()
+        {
+            var loader = GetLoader<PasswordResetViewModel>();
+
+            return View("ResetSuccess", loader.Load());
+        }
+
+        [AllowAnonymous]
         [HttpGet("language/{languageCode}/{returnPath}")]
         public IActionResult Language(string languageCode, string returnPath)
         {

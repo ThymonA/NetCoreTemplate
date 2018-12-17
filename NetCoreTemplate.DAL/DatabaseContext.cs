@@ -54,6 +54,8 @@
 
         public DbSet<UserRole> UserRole { get; set; }
 
+        public DbSet<MailQueue> MailQueue { get; set; }
+
         /** Translation */
 
         public DbSet<EntityLabel> EntityLabel { get; set; }

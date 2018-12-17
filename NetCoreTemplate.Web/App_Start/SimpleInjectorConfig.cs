@@ -16,7 +16,9 @@
     using NetCoreTemplate.Providers.General;
     using NetCoreTemplate.Providers.Interfaces;
     using NetCoreTemplate.Providers.Interfaces.General;
+    using NetCoreTemplate.Services.General;
     using NetCoreTemplate.Services.Interfaces;
+    using NetCoreTemplate.Services.Interfaces.General;
     using NetCoreTemplate.SharedKernel.Interfaces.Managers;
     using NetCoreTemplate.SharedKernel.Interfaces.PersistenceLayer;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
@@ -72,10 +74,12 @@
             container.Register<IUserProvider, UserProvider>(Lifestyle.Scoped);
             container.Register<IPermissionProvider, PermissionProvider>(Lifestyle.Scoped);
             container.Register<IRoleProvider, RoleProvider>(Lifestyle.Scoped);
+            container.Register<IMailQueueProvider, MailQueueProvider>(Lifestyle.Scoped);
         }
 
         private static void RegisterServices(Container container)
         {
+            container.Register<IMailQueueService, MailQueueService>(Lifestyle.Scoped);
         }
 
         private static void OverrideViewModelProcessors(Container container)

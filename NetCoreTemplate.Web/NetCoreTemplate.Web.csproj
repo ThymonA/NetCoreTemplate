@@ -68,6 +68,12 @@ Website: https://www.thymonarens.nl/</Description>
     <Content Update="appsettings.test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="Views\Admin\ResetSuccess.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Admin\PasswordReset.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Device\Detail.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

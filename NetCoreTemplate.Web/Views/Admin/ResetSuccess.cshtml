@@ -1,0 +1,52 @@
+﻿@using NetCoreTemplate.Web.Extensions.FormHelper
+@model NetCoreTemplate.ViewModels.Controllers.Admin.PasswordResetViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="@Model.CultureInfo.TwoLetterISOLanguageName.ToLower()">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/theme.css">
+    <link rel="stylesheet" href="~/assets/css/custom.css">
+    <link rel="stylesheet" href="~/assets/vendor/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <title>@Model.Label["Dashboard:Admin:PasswordReset"] - NetCoreTemplate</title>
+</head>
+<body>
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header header-dark text-center">
+                <a href="@Url.Action("Index", "Dashboard")">
+                    AspNetCoreTemplate
+                </a>
+                <span class="splash-description">
+                    @Model.Label["Dashboard:Admin:Message"]
+                </span>
+            </div>
+            <div class="card-body">
+                <p>@Model.Label["Dashboard:Admin:Message"]</p>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
