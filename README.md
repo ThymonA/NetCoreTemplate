@@ -3,6 +3,12 @@ NetCoreTemplate is my .NET Core template for new projects. This template is equi
 
 ![N|Solid](https://i.imgur.com/O8D9cHS.png)
 
+### TOC
+- [This template has the following functionalities](#1-this-template-has-the-following-functionalities)
+- [Screenshots](#2-screenshots)
+- [Theme by ColorLib](#theme-by-colorlib)
+- [License](#license)
+
 ### 1. This template has the following functionalities
 
 Template is available in 4 different languages ( **NL**, **EN**, **DE**, **FR** ), Dutch is set as default language.
@@ -15,12 +21,12 @@ Template is available in 4 different languages ( **NL**, **EN**, **DE**, **FR** 
 | View Role     | `/role/{id}`  | `dashboard.role.edit` | **Change to separate permission in the future** |
 | Add Role     | `/role`  | `dashboard.role.edit` | **Change to separate permission in the future** |
 | Edit Role     | `/role/{id}`  | `dashboard.role.edit` | **-** |
-| Delete Role     | `/role/{id}`  | `dashboard.role.delete` | **-** |
+| Delete Role     | `/role/delete/{id}`  | `dashboard.role.delete` | **-** |
 | View Users    | `/users` | `dashboard.users.view` | **-** |
 | View User     | `/user/{id}`  | `dashboard.user.edit` | **Change to separate permission in the future** |
 | Add User     | `/user`  | `dashboard.user.edit` | **Change to separate permission in the future** |
 | Edit User     | `/user/{id}`  | `dashboard.user.edit` | **-** |
-| Delete User     | `/user/{id}`  | `dashboard.user.delete` | **-** |
+| Delete User     | `/user/delete/{id}`  | `dashboard.user.delete` | **-** |
 
 ### 2. Screenshots
 #### 2.1 Login
