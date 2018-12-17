@@ -17,6 +17,10 @@ Template is available in 4 different languages ( **NL**, **EN**, **DE**, **FR** 
 |:-------------:|:-----:|:-------------:|:----:|
 | Login         | `/`   |  `none`       | **-** |
 | Logout        | `/signout` | `none` | **-** |
+| Reset Password  | `/reset` | `none` | **-** |
+| Change Password  | `/token/{token}` | `none` | **-** |
+| Request Successful  | `/success` | `none` | **-** |
+| Password Expire  | `/expire` | `none` | **-** |
 | View Roles    | `/roles` | `dashboard.roles.view` | **-** |
 | View Role     | `/role/{id}`  | `dashboard.role.edit` | **Change to separate permission in the future** |
 | Add Role     | `/role`  | `dashboard.role.edit` | **Change to separate permission in the future** |
