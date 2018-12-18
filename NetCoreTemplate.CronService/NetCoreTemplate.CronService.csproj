@@ -27,9 +27,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.template.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
