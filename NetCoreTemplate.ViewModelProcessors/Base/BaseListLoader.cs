@@ -72,9 +72,9 @@
 
         protected virtual Expression<Func<TEntity, bool>> Condition { get; } = null;
 
-        protected virtual Expression<Func<TEntity, bool>> Predicate { get; } = null;
-
         protected virtual Dictionary<string, List<SortExpression<TEntity>>> CustomOrderByExpressions { get; } = new Dictionary<string, List<SortExpression<TEntity>>>();
+
+        protected abstract Expression<Func<TEntity, bool>> Predicate { get; }
 
         protected abstract Expression<Func<TEntity, object>> DefaultOrderBy { get; }
 

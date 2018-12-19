@@ -21,6 +21,9 @@
         {
         }
 
+        protected override Expression<Func<Role, bool>> Predicate =>
+            role => role.Name.Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase);
+
         protected override Expression<Func<Role, object>> DefaultOrderBy => role => role.Name;
 
         protected override IQueryable<Role> BaseQuery => EntityProvider.GetAll().Include(role => role.RolePermissions);

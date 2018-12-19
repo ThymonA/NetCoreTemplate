@@ -20,13 +20,29 @@
                     DE = "Bisherige",
                     FR = "Précédent"
                 },
-                 new Translation
+                new Translation
                 {
                     Key = "Next",
                     NL = "Volgende",
                     EN = "Next",
                     DE = "Nächster",
                     FR = "Suivant"
+                },
+                new Translation
+                {
+                    Key = "NumberOfResults",
+                    NL = "Toon aantal resultaten",
+                    EN = "Show number of results",
+                    DE = "Anzahl der Ergebnisse anzeigen",
+                    FR = "Afficher le nombre de résultats"
+                },
+                new Translation
+                {
+                    Key = "Search",
+                    NL = "Zoeken",
+                    EN = "Search",
+                    DE = "Suche",
+                    FR = "Chercher"
                 }
             };
         }

@@ -1,5 +1,6 @@
 ﻿@using NetCoreTemplate.DAL.Permissions
 @using NetCoreTemplate.SharedKernel.Extensions
+@using NetCoreTemplate.Web.Extensions.FormHelper
 @using NetCoreTemplate.Web.Extensions.HtmlHelper
 @using Type = NetCoreTemplate.DAL.Permissions.Type
 @using Action = NetCoreTemplate.DAL.Permissions.Action
@@ -30,6 +31,31 @@
                 </nav>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12" style="margin-bottom: 15px;">
+        @using (Html.BeginForm("List", "User", FormMethod.Get, new { autocomplete = "off", style = "width: 100%;" }))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="dataTables_length" id="bs4-table_length">
+                        @Html.BoxedDropdownFilterFor(m => m.PageSize,
+                            new List<SelectListItem>
+                                {
+                                    new SelectListItem("15", "15", Model.PageSize == 15),
+                                    new SelectListItem("25", "25", Model.PageSize == 25),
+                                    new SelectListItem("50", "50", Model.PageSize == 50),
+                                    new SelectListItem("75", "75", Model.PageSize == 75),
+                                    new SelectListItem("100", "100", Model.PageSize == 100)
+                                }, Model.Label["General:Dashboard:NumberOfResults"])
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @Html.BoxedTextBoxFor(m => m.SearchTerm, Model.Label["General:Dashboard:Search"])
+                </div>
+            </div>
+        }
     </div>
 </div>
 <div class="row">

@@ -42,6 +42,11 @@
                 }
             };
 
+        protected override Expression<Func<User, bool>> Predicate => 
+            user => (user.Firstname + " " + user.Lastname).Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase) ||
+                    (user.Lastname + " " + user.Firstname).Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase) ||
+                     user.Email.Contains(SearchTerm, StringComparison.InvariantCultureIgnoreCase);
+
         protected override Expression<Func<User, object>> DefaultOrderBy => user => "Name";
 
         protected override TranslationSettings TranslationSettings => new TranslationSettings("Dashboard", "User");
