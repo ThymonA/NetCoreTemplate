@@ -1,5 +1,6 @@
 ﻿namespace NetCoreTemplate.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using NetCoreTemplate.SharedKernel.ServiceContainer;
@@ -13,6 +14,7 @@
         {
         }
 
+        [AllowAnonymous]
         [HttpGet("error/{code?}")]
         [HttpPost("error/{code?}")]
         public IActionResult Error(string code)

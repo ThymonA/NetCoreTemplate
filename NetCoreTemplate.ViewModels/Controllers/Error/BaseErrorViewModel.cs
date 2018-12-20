@@ -4,6 +4,6 @@
 
     public sealed class BaseErrorViewModel : BaseViewModel
     {
-        public string Code { get; set; }
+        public int Code { get; set; }
     }
 }

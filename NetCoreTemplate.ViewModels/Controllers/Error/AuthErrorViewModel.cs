@@ -4,6 +4,6 @@
 
     public class AuthErrorViewModel : BaseAuthenticationViewModel
     {
-        public string Code { get; set; }
+        public int Code { get; set; }
     }
 }

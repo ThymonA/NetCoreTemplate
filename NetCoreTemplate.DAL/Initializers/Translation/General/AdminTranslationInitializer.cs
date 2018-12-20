@@ -276,6 +276,38 @@
                     DE = "Beste",
                     FR = "Meilleur"
                 },
+                new Translation
+                {
+                    Key = "404Title",
+                    NL = "Pagina is niet gevonden",
+                    EN = "Page was not found",
+                    DE = "Seite wurde nicht gefunden",
+                    FR = "La page n'a pas été trouvée"
+                },
+                new Translation
+                {
+                    Key = "404Message",
+                    NL = "Pagina is niet gevonden. Probeer het opnieuw.",
+                    EN = "Page was not found, please try again.",
+                    DE = "Die Seite wurde nicht gefunden. Bitte versuchen Sie es erneut.",
+                    FR = "La page n'a pas été trouvée, veuillez réessayer."
+                },
+                new Translation
+                {
+                    Key = "500Title",
+                    NL = "Serverfout",
+                    EN = "Server error",
+                    DE = "Serverfehler",
+                    FR = "Erreur du serveur"
+                },
+                new Translation
+                {
+                    Key = "500Message",
+                    NL = "We kunnen uw verzoek niet verwerken. Dit is een mogelijke serverfout.",
+                    EN = "We are not able to process your request. This is a possible server error.",
+                    DE = "Wir können Ihre Anfrage nicht bearbeiten. Dies ist ein möglicher Serverfehler.",
+                    FR = "Nous ne sommes pas en mesure de traiter votre demande. C'est une erreur du serveur possible."
+                },
             };
         }
     }

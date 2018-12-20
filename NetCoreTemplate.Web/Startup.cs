@@ -176,8 +176,8 @@
             })
             .AddCookie(options =>
             {
-                options.LoginPath = "/signin/";
-                options.LogoutPath = "/logout/";
+                options.LoginPath = "/";
+                options.LogoutPath = "/signout/";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
                 options.SessionStore = new MemoryCacheTicketStore();
             });

@@ -1,0 +1,55 @@
+﻿@model NetCoreTemplate.ViewModels.Controllers.Error.AuthErrorViewModel
+@{
+    ViewData["Title"] = Model.Label[$"Dashboard:Admin:{Model.Code}Title"];
+}
+@section styles
+{
+    <link rel="stylesheet" href="~/assets/vendor/DataTables/media/css/dataTables.bootstrap4.min.css">
+}
+
+<div class="row">
+    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+            @if (!Model.Label[$"Dashboard:Admin:{Model.Code}Title"].Equals("MISSING TRANSLATION"))
+            {
+                <h2 class="pageheader-title">@Model.Label[$"Dashboard:Admin:{Model.Code}Title"]</h2>
+            }
+            else
+            {
+                <h2 class="pageheader-title">@Model.Label[$"Dashboard:Admin:500Title"]</h2>
+            }
+            <div class="page-breadcrumb" style="margin-bottom: 25px;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index", "Dashboard")" class="breadcrumb-link">@Model.Label["Dashboard:MainMenu:Dashboard"]</a>
+                        </li>
+                        @if (!Model.Label[$"Dashboard:Admin:{Model.Code}Title"].Equals("MISSING TRANSLATION"))
+                        {
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Error", "Error", new { code = Model.Code })" class="breadcrumb-link active">@Model.Label[$"Dashboard:Admin:{Model.Code}Title"]</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Error", "Error", new { code = Model.Code })" class="breadcrumb-link active">@Model.Label[$"Dashboard:Admin:500Title"]</a>
+                            </li>
+                        }
+                    </ol>
+                </nav>
+            </div>
+            <strong style="font-size: 50px; padding-top: 25px;">
+                @Model.Code
+            </strong>
+        </div>
+    </div>
+    @if (!Model.Label[$"Dashboard:Admin:{Model.Code}Message"].Equals("MISSING TRANSLATION"))
+    {
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+            <p style="font-size: 20px;">
+                @Model.Label[$"Dashboard:Admin:{Model.Code}Message"]
+            </p>
+        </div>
+    }
+</div>
