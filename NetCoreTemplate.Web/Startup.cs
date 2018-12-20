@@ -56,17 +56,8 @@
 
             container.Verify();
 
-            if (env.IsDevelopment())
-            {
-                app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseStatusCodePagesWithRedirects("/error/{0}");
-                app.UseHsts();
-            }
-
+            app.UseStatusCodePagesWithRedirects("/error/{0}");
+            app.UseHsts();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseCookiePolicy();
