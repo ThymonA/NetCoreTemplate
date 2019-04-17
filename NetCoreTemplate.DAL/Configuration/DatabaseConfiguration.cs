@@ -6,6 +6,9 @@
 
     public class DatabaseConfiguration : IDatabaseConfiguration
     {
+        public const string MYSQL = "MYSQL";
+        public const string MSSQL = "MSSQL";
+
         private readonly IConfiguration configuration;
 
         public DatabaseConfiguration(IConfiguration configuration)

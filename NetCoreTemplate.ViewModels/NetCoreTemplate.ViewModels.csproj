@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>NetCoreTemplate.ViewModels</AssemblyName>
     <RootNamespace>NetCoreTemplate.ViewModels</RootNamespace>
     <PackageId>NetCoreTemplate.ViewModels</PackageId>
@@ -9,13 +9,13 @@
     <Product>NetCoreTemplate</Product>
     <Description>GitHub: https://www.github.com/ThymonA/
 Website: https://www.thymonarens.nl/</Description>
-    <Copyright>2018 - Thymon Arens</Copyright>
+    <Copyright>2019 - Thymon Arens</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>ASP.NET Core 2.1</PackageTags>
+    <PackageTags>ASP.NET Core 2</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,6 @@ Website: https://www.thymonarens.nl/</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Graph" Version="1.12.0" />
+    <PackageReference Include="Microsoft.Graph" Version="1.14.0" />
   </ItemGroup>
 </Project>

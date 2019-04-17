@@ -13,8 +13,9 @@ namespace NetCoreTemplate.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Key = table.Column<string>(nullable: true)
+                    Key = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,6 +27,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
                     Code = table.Column<string>(nullable: false),
@@ -37,12 +39,32 @@ namespace NetCoreTemplate.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MailQueue",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    To = table.Column<string>(nullable: false),
+                    Subject = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    AddedOn = table.Column<DateTime>(nullable: false),
+                    SentOn = table.Column<DateTime>(nullable: true),
+                    NumberOfTimesFailed = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MailQueue", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Role",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Active = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -55,6 +77,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Module = table.Column<string>(maxLength: 128, nullable: false),
                     Type = table.Column<string>(maxLength: 128, nullable: false),
@@ -70,8 +93,9 @@ namespace NetCoreTemplate.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: true),
                     Firstname = table.Column<string>(nullable: true),
                     Lastname = table.Column<string>(nullable: true),
@@ -88,10 +112,11 @@ namespace NetCoreTemplate.DAL.Migrations
                 name: "Permission",
                 columns: table => new
                 {
-                    EntityLabelDefinition_Id = table.Column<int>(nullable: false),
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Action = table.Column<string>(nullable: true)
+                    EntityLabelDefinition_Id = table.Column<int>(nullable: false),
+                    Action = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,7 +135,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 {
                     EntityLabelDefinition_Id = table.Column<int>(nullable: false),
                     Language_Id = table.Column<int>(nullable: false),
-                    Label = table.Column<string>(nullable: true)
+                    Label = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -135,12 +160,11 @@ namespace NetCoreTemplate.DAL.Migrations
                 {
                     TranslationLabelDefinition_Id = table.Column<int>(nullable: false),
                     Language_Id = table.Column<int>(nullable: false),
-                    Label = table.Column<string>(nullable: true)
+                    Label = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TranslationLabel", x => new { x.TranslationLabelDefinition_Id, x.Language_Id });
-                    table.UniqueConstraint("AK_TranslationLabel_Language_Id_TranslationLabelDefinition_Id", x => new { x.Language_Id, x.TranslationLabelDefinition_Id });
+                    table.PrimaryKey("PK_TranslationLabel", x => new { x.Language_Id, x.TranslationLabelDefinition_Id });
                     table.ForeignKey(
                         name: "FK_TranslationLabel_Language_Language_Id",
                         column: x => x.Language_Id,
@@ -148,7 +172,7 @@ namespace NetCoreTemplate.DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TranslationLabel_TranslationLabelDefinition_TranslationLabelDefinition_Id",
+                        name: "FK_TranslationLabel_TranslationLabelDefinition_TranslationLabel~",
                         column: x => x.TranslationLabelDefinition_Id,
                         principalTable: "TranslationLabelDefinition",
                         principalColumn: "Id",
@@ -160,6 +184,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
@@ -174,7 +199,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 {
                     table.PrimaryKey("PK_FileManagerDirectory", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FileManagerDirectory_FileManagerDirectory_FileManagerDirectory_Id",
+                        name: "FK_FileManagerDirectory_FileManagerDirectory_FileManagerDirecto~",
                         column: x => x.FileManagerDirectory_Id,
                         principalTable: "FileManagerDirectory",
                         principalColumn: "Id",
@@ -196,8 +221,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRole", x => new { x.User_Id, x.Role_Id });
-                    table.UniqueConstraint("AK_UserRole_Role_Id_User_Id", x => new { x.Role_Id, x.User_Id });
+                    table.PrimaryKey("PK_UserRole", x => new { x.Role_Id, x.User_Id });
                     table.ForeignKey(
                         name: "FK_UserRole_Role_Role_Id",
                         column: x => x.Role_Id,
@@ -221,8 +245,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RolePermission", x => new { x.Role_Id, x.Permission_Id });
-                    table.UniqueConstraint("AK_RolePermission_Permission_Id_Role_Id", x => new { x.Permission_Id, x.Role_Id });
+                    table.PrimaryKey("PK_RolePermission", x => new { x.Permission_Id, x.Role_Id });
                     table.ForeignKey(
                         name: "FK_RolePermission_Permission_Permission_Id",
                         column: x => x.Permission_Id,
@@ -242,6 +265,7 @@ namespace NetCoreTemplate.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
@@ -298,23 +322,24 @@ namespace NetCoreTemplate.DAL.Migrations
                 column: "FileManagerDirectory_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Code_CultureCode_Unique",
-                table: "Language",
-                columns: new[] { "Code", "CultureCode" },
-                unique: true)
-                .Annotation("SqlServer:Clustered", false);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Permission_EntityLabelDefinition_Id",
                 table: "Permission",
                 column: "EntityLabelDefinition_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Module_Type_Key_Unique",
-                table: "TranslationLabelDefinition",
-                columns: new[] { "Module", "Type", "Key" },
-                unique: true)
-                .Annotation("SqlServer:Clustered", false);
+                name: "IX_RolePermission_Role_Id",
+                table: "RolePermission",
+                column: "Role_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TranslationLabel_TranslationLabelDefinition_Id",
+                table: "TranslationLabel",
+                column: "TranslationLabelDefinition_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRole_User_Id",
+                table: "UserRole",
+                column: "User_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -324,6 +349,9 @@ namespace NetCoreTemplate.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "FileManagerFile");
+
+            migrationBuilder.DropTable(
+                name: "MailQueue");
 
             migrationBuilder.DropTable(
                 name: "RolePermission");
