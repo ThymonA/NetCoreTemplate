@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetCoreTemplate.DAL;
 
@@ -15,15 +14,13 @@ namespace NetCoreTemplate.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.FileManager.FileManagerDirectory", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Created_On");
 
@@ -53,8 +50,7 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.FileManager.FileManagerFile", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("CreatedBy_User_Id");
 
@@ -90,8 +86,7 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.Language", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Code")
                         .IsRequired();
@@ -104,19 +99,13 @@ namespace NetCoreTemplate.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Code", "CultureCode")
-                        .IsUnique()
-                        .HasName("IX_Code_CultureCode_Unique")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
                     b.ToTable("Language");
                 });
 
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.MailQueue", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("AddedOn");
 
@@ -128,7 +117,8 @@ namespace NetCoreTemplate.DAL.Migrations
 
                     b.Property<string>("Subject");
 
-                    b.Property<string>("To");
+                    b.Property<string>("To")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -138,10 +128,10 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.Permission", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Action");
+                    b.Property<string>("Action")
+                        .IsRequired();
 
                     b.Property<int>("EntityLabelDefinition_Id");
 
@@ -155,12 +145,12 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.Role", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Active");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -169,13 +159,13 @@ namespace NetCoreTemplate.DAL.Migrations
 
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.RolePermission", b =>
                 {
-                    b.Property<int>("Role_Id");
-
                     b.Property<int>("Permission_Id");
 
-                    b.HasKey("Role_Id", "Permission_Id");
+                    b.Property<int>("Role_Id");
 
-                    b.HasAlternateKey("Permission_Id", "Role_Id");
+                    b.HasKey("Permission_Id", "Role_Id");
+
+                    b.HasIndex("Role_Id");
 
                     b.ToTable("RolePermission");
                 });
@@ -183,12 +173,12 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Active");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<string>("Firstname");
 
@@ -207,13 +197,13 @@ namespace NetCoreTemplate.DAL.Migrations
 
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.UserRole", b =>
                 {
-                    b.Property<int>("User_Id");
-
                     b.Property<int>("Role_Id");
 
-                    b.HasKey("User_Id", "Role_Id");
+                    b.Property<int>("User_Id");
 
-                    b.HasAlternateKey("Role_Id", "User_Id");
+                    b.HasKey("Role_Id", "User_Id");
+
+                    b.HasIndex("User_Id");
 
                     b.ToTable("UserRole");
                 });
@@ -224,7 +214,8 @@ namespace NetCoreTemplate.DAL.Migrations
 
                     b.Property<int>("Language_Id");
 
-                    b.Property<string>("Label");
+                    b.Property<string>("Label")
+                        .IsRequired();
 
                     b.HasKey("EntityLabelDefinition_Id", "Language_Id");
 
@@ -236,10 +227,10 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.Translation.EntityLabelDefinition", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Key");
+                    b.Property<string>("Key")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -248,15 +239,16 @@ namespace NetCoreTemplate.DAL.Migrations
 
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.Translation.TranslationLabel", b =>
                 {
-                    b.Property<int>("TranslationLabelDefinition_Id");
-
                     b.Property<int>("Language_Id");
 
-                    b.Property<string>("Label");
+                    b.Property<int>("TranslationLabelDefinition_Id");
 
-                    b.HasKey("TranslationLabelDefinition_Id", "Language_Id");
+                    b.Property<string>("Label")
+                        .IsRequired();
 
-                    b.HasAlternateKey("Language_Id", "TranslationLabelDefinition_Id");
+                    b.HasKey("Language_Id", "TranslationLabelDefinition_Id");
+
+                    b.HasIndex("TranslationLabelDefinition_Id");
 
                     b.ToTable("TranslationLabel");
                 });
@@ -264,8 +256,7 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.Translation.TranslationLabelDefinition", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Key")
                         .IsRequired()
@@ -281,22 +272,17 @@ namespace NetCoreTemplate.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Module", "Type", "Key")
-                        .IsUnique()
-                        .HasName("IX_Module_Type_Key_Unique")
-                        .HasAnnotation("SqlServer:Clustered", false);
-
                     b.ToTable("TranslationLabelDefinition");
                 });
 
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.FileManager.FileManagerDirectory", b =>
                 {
                     b.HasOne("NetCoreTemplate.DAL.Models.FileManager.FileManagerDirectory", "Parent")
-                        .WithMany()
+                        .WithMany("FileManagerDirectories")
                         .HasForeignKey("FileManagerDirectory_Id");
 
                     b.HasOne("NetCoreTemplate.DAL.Models.General.User", "CreatedUser")
-                        .WithMany()
+                        .WithMany("FileManagerDirectories")
                         .HasForeignKey("User_Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -338,7 +324,7 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.General.UserRole", b =>
                 {
                     b.HasOne("NetCoreTemplate.DAL.Models.General.Role", "Role")
-                        .WithMany()
+                        .WithMany("UserRoles")
                         .HasForeignKey("Role_Id")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -351,12 +337,12 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.Translation.EntityLabel", b =>
                 {
                     b.HasOne("NetCoreTemplate.DAL.Models.Translation.EntityLabelDefinition", "EntityLabelDefinition")
-                        .WithMany()
+                        .WithMany("EntityLabels")
                         .HasForeignKey("EntityLabelDefinition_Id")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("NetCoreTemplate.DAL.Models.General.Language", "Language")
-                        .WithMany()
+                        .WithMany("EntityLabels")
                         .HasForeignKey("Language_Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -364,7 +350,7 @@ namespace NetCoreTemplate.DAL.Migrations
             modelBuilder.Entity("NetCoreTemplate.DAL.Models.Translation.TranslationLabel", b =>
                 {
                     b.HasOne("NetCoreTemplate.DAL.Models.General.Language", "Language")
-                        .WithMany()
+                        .WithMany("TranslationLabels")
                         .HasForeignKey("Language_Id")
                         .OnDelete(DeleteBehavior.Cascade);
 

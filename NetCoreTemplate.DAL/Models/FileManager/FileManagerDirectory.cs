@@ -1,6 +1,7 @@
 ﻿namespace NetCoreTemplate.DAL.Models.FileManager
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,5 +36,7 @@
         public DateTime? Updated_On { get; set; }
 
         public FileManagerDirectoryType Type { get; set; }
+
+        public virtual List<FileManagerDirectory> FileManagerDirectories { get; set; }
     }
 }

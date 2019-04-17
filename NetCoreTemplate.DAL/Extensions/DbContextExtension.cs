@@ -12,11 +12,15 @@
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.EntityFrameworkCore.Migrations;
 
+    using NetCoreTemplate.DAL.Configuration;
+
     using TrackableEntities.Common.Core;
     using TrackableEntities.EF.Core;
 
     public static class DbContextExtension
     {
+        public static string DatabaseProvider { get; set; }
+
         public static bool AllMigrationApplied(this DbContext context)
         {
             var applied = context.GetService<IHistoryRepository>()
@@ -42,9 +46,16 @@
             IEnumerable<TEntity> entities)
             where TEntity : class
         {
-            context.Database.OpenConnection();
-            var setIdentityOn = $"SET IDENTITY_INSERT dbo.[{typeof(TEntity).Name}] ON";
-            context.Database.ExecuteSqlCommand(setIdentityOn);
+            if (DatabaseProvider.Equals(
+                DatabaseConfiguration.MSSQL, 
+                StringComparison.InvariantCultureIgnoreCase))
+            {
+                context.Database.OpenConnection();
+
+                var setIdentityOn = $"SET IDENTITY_INSERT dbo.[{typeof(TEntity).Name}] ON";
+
+                context.Database.ExecuteSqlCommand(setIdentityOn);
+            }
 
             var added = new Collection<TEntity>();
             var updated = new Collection<TEntity>();
@@ -71,9 +82,16 @@
             }
 
             context.SaveChanges();
-            var setIdentityOff = $"SET IDENTITY_INSERT dbo.[{typeof(TEntity).Name}] OFF";
-            context.Database.ExecuteSqlCommand(setIdentityOff);
-            context.Database.CloseConnection();
+
+            if (DatabaseProvider.Equals(
+                DatabaseConfiguration.MSSQL, 
+                StringComparison.InvariantCultureIgnoreCase))
+            {
+                var setIdentityOff = $"SET IDENTITY_INSERT dbo.[{typeof(TEntity).Name}] OFF";
+
+                context.Database.ExecuteSqlCommand(setIdentityOff);
+                context.Database.CloseConnection();
+            }
         }
 
         public static void AddOrUpdateRangeWithoutIdentity<TEntity, TProperty>(

@@ -8,6 +8,8 @@
 
     using System.ComponentModel.DataAnnotations;
 
+    using NetCoreTemplate.DAL.Models.FileManager;
+
     public class User : TrackableEntity, IKeyModel
     {
         [Key]
@@ -28,5 +30,7 @@
         public bool Active { get; set; }
 
         public virtual List<UserRole> UserRoles { get; set; }
+
+        public virtual List<FileManagerDirectory> FileManagerDirectories { get; set; }
     }
 }
