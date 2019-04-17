@@ -16,5 +16,7 @@
         public bool Active { get; set; }
 
         public virtual List<RolePermission> RolePermissions { get; set; }
+
+        public virtual List<UserRole> UserRoles { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>NetCoreTemplate.CronService</AssemblyName>
     <RootNamespace>NetCoreTemplate.CronService</RootNamespace>
     <PackageId>NetCoreTemplate.CronService</PackageId>
@@ -15,7 +15,7 @@
       GitHub: https://www.github.com/ThymonA/
       Website: https://www.thymonarens.nl/
     </Description>
-    <Copyright>2018 - Thymon Arens</Copyright>
+    <Copyright>2019 - Thymon Arens</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
@@ -42,12 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="2.0.1" />
-    <PackageReference Include="ncrontab" Version="3.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="ncrontab" Version="3.3.1" />
     <PackageReference Include="RazorLight" Version="2.0.0-beta1" />
-    <PackageReference Include="SimpleInjector" Version="4.4.0" />
+    <PackageReference Include="SimpleInjector" Version="4.5.1" />
   </ItemGroup>
 
   <ItemGroup>

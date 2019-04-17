@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>NetCoreTemplate.Authentication</AssemblyName>
     <RootNamespace>NetCoreTemplate.Authentication</RootNamespace>
     <PackageId>NetCoreTemplate.Authentication</PackageId>
@@ -15,18 +15,18 @@
       GitHub: https://www.github.com/ThymonA/
       Website: https://www.thymonarens.nl/
     </Description>
-    <Copyright>2018 - Thymon Arens</Copyright>
+    <Copyright>2019 - Thymon Arens</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>ASP.NET Core 2.1</PackageTags>
+    <PackageTags>ASP.NET Core 2</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>

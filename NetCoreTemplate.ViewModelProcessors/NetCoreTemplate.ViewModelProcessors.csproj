@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>NetCoreTemplate.ViewModelProcessors</AssemblyName>
     <RootNamespace>NetCoreTemplate.ViewModelProcessors</RootNamespace>
     <PackageId>NetCoreTemplate.ViewModelProcessors</PackageId>
@@ -10,21 +10,21 @@
     <Product>NetCoreTemplate</Product>
     <Description>GitHub: https://www.github.com/ThymonA/
 Website: https://www.thymonarens.nl/</Description>
-    <Copyright>2018 - Thymon Arens</Copyright>
+    <Copyright>2019 - Thymon Arens</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ThymonA/NetCoreTemplate</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ThymonA/NetCoreTemplate</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>ASP.NET Core 2.1</PackageTags>
+    <PackageTags>ASP.NET Core 2</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="RazorLight" Version="2.0.0-beta1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
-    <PackageReference Include="morelinq" Version="3.0.0" />
-    <PackageReference Include="TimeZoneConverter" Version="2.4.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="morelinq" Version="3.1.1" />
+    <PackageReference Include="TimeZoneConverter" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

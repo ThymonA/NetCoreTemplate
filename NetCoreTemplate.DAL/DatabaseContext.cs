@@ -1,13 +1,16 @@
 ﻿namespace NetCoreTemplate.DAL
 {
-    using NetCoreTemplate.DAL.Configuration;
+    using System;
+
     using NetCoreTemplate.DAL.Extensions;
     using NetCoreTemplate.DAL.Models.FileManager;
     using NetCoreTemplate.DAL.Models.Translation;
     using NetCoreTemplate.SharedKernel.ServiceContainer;
 
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
 
+    using NetCoreTemplate.DAL.Configuration;
     using NetCoreTemplate.DAL.Models.General;
 
     public class DatabaseContext : DbContext
@@ -16,28 +19,134 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var databaesConfiguration = Container.GetService<IDatabaseConfiguration>();
-            var connection = databaesConfiguration.ConnectionString;
+            var configuration = Container.GetService<IConfiguration>();
+            var databaseProvider = DbContextExtension.DatabaseProvider;
 
-            optionsBuilder.UseSqlServer(connection);
+            if (string.IsNullOrWhiteSpace(databaseProvider))
+            {
+                databaseProvider = configuration["Database:DatabaseProvider"];
+            }
+
+            if (string.IsNullOrWhiteSpace(databaseProvider))
+            {
+                throw new ArgumentNullException($"Configuration 'Database:DatabaseProvider' can't be null");
+            }
+
+            switch (databaseProvider.ToUpper().Trim())
+            {
+                case DatabaseConfiguration.MSSQL:
+                    optionsBuilder.UseSqlServer(configuration["Database:MSSQL:ConnectionString"]);
+                    break;
+                case DatabaseConfiguration.MYSQL:
+                    optionsBuilder.UseMySql(configuration["Database:MYSQL:ConnectionString"]);
+                    break;
+                default:
+                    throw new NotImplementedException($"Database provider '{databaseProvider}' has not been implemented.");
+            }
+
+            DbContextExtension.DatabaseProvider = databaseProvider;
+
             optionsBuilder.EnableSensitiveDataLogging();
 
             base.OnConfiguring(optionsBuilder);
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder moderBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(moderBuilder);
 
-            builder.BuildIndexesFromAnnotations();
-            builder.Entity<RolePermission>()
-                .HasKey(x => new { x.Role_Id, x.Permission_Id });
-            builder.Entity<UserRole>()
-                .HasKey(x => new { x.User_Id, x.Role_Id });
-            builder.Entity<TranslationLabel>()
-                .HasKey(x => new { x.TranslationLabelDefinition_Id, x.Language_Id });
-            builder.Entity<EntityLabel>()
-                .HasKey(x => new { x.EntityLabelDefinition_Id, x.Language_Id });
+            moderBuilder.Entity<Language>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Code).IsRequired();
+                entity.Property(e => e.CultureCode).IsRequired();
+                entity.Property(e => e.Name).IsRequired();
+            });
+
+            moderBuilder.Entity<Permission>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Action).IsRequired();
+            });
+
+            moderBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+            });
+
+            moderBuilder.Entity<RolePermission>(entity =>
+            {
+                entity.HasKey(e => new { e.Permission_Id, e.Role_Id });
+                entity.HasOne(e => e.Permission)
+                    .WithMany(e => e.RolePermissions);
+                entity.HasOne(e => e.Role)
+                    .WithMany(e => e.RolePermissions);
+            });
+
+            moderBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Email).IsRequired();
+            });
+
+            moderBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.Role_Id, e.User_Id });
+                entity.HasOne(e => e.Role)
+                    .WithMany(e => e.UserRoles);
+                entity.HasOne(e => e.User)
+                    .WithMany(e => e.UserRoles);
+            });
+
+            moderBuilder.Entity<MailQueue>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.To).IsRequired();
+            });
+
+            moderBuilder.Entity<EntityLabel>(entity =>
+            {
+                entity.HasKey(e => new { e.EntityLabelDefinition_Id, e.Language_Id });
+                entity.Property(e => e.Label).IsRequired();
+                entity.HasOne(e => e.EntityLabelDefinition)
+                    .WithMany(e => e.EntityLabels);
+                entity.HasOne(e => e.Language)
+                    .WithMany(e => e.EntityLabels);
+            });
+
+            moderBuilder.Entity<EntityLabelDefinition>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Key).IsRequired();
+            });
+
+            moderBuilder.Entity<TranslationLabel>(entity =>
+            {
+                entity.HasKey(e => new { e.Language_Id, e.TranslationLabelDefinition_Id });
+                entity.Property(e => e.Label).IsRequired();
+                entity.HasOne(e => e.Language)
+                    .WithMany(e => e.TranslationLabels);
+                entity.HasOne(e => e.TranslationLabelDefinition)
+                    .WithMany(e => e.TranslationLabels);
+            });
+
+            moderBuilder.Entity<TranslationLabelDefinition>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Key).IsRequired();
+                entity.Property(e => e.Module).IsRequired();
+                entity.Property(e => e.Type).IsRequired();
+            });
+
+            moderBuilder.Entity<FileManagerDirectory>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasOne(e => e.CreatedUser)
+                    .WithMany(e => e.FileManagerDirectories);
+                entity.HasOne(e => e.Parent)
+                    .WithMany(e => e.FileManagerDirectories);
+            });
         }
 
         /** General */
